@@ -10,30 +10,30 @@ import { BlogPostCard } from "@/components/blogPostCard/blogPostCard";
 import { useTranslations } from "next-intl";
 
 export default function BlogPage() {
-    const t = useTranslations('blog');
+    const t = useTranslations('Blog');
 
     {/* Placeholder */}
     const posts = [
         {
-            slug: 'primeiro-post',
-            title: 'Primeiro Post do Blog',
-            description: 'Este é o primeiro post do nosso blog. Aqui você encontrará conteúdo interessante e relevante sobre diversos tópicos.',
+            slug: 'first-post',
+            title: 'Title Title Title',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet risus nec sapien fringilla gravida et vitae enim. Nunc ut mattis lacus.',
             date: '2024-11-15',
-            image: '/logos/logo.png'
+            image: '/logos/GROOVETREE_LOGO.jpg'
         },
         {
-            slug: 'segundo-post',
-            title: 'Segundo Post do Blog',
-            description: 'Continuamos compartilhando conhecimento e experiências através deste segundo post. Fique atento para mais conteúdo!',
+            slug: 'second-post',
+            title: 'Title Title',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet risus nec sapien fringilla gravida et vitae enim. Nunc ut mattis lacus.',
             date: '2024-11-20',
-            image: '/logos/logo.png'
+            image: '/logos/GROOVETREE_LOGO.jpg'
         },
         {
-            slug: 'terceiro-post',
-            title: 'Terceiro Post do Blog',
-            description: 'Mais um post repleto de informações úteis e insights valiosos para você. Continue acompanhando!',
+            slug: 'third-post',
+            title: 'Title',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet risus nec sapien fringilla gravida et vitae enim. Nunc ut mattis lacus.',
             date: '2024-11-25',
-            image: '/logos/logo.png'
+            image: '/logos/inatel_logo.png'
         },
     ];
 
@@ -44,7 +44,6 @@ export default function BlogPage() {
                     
                     {/* Left column - Posts (70% width) */}
                     <div className="lg:w-[70%]">
-                        <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-white">Blog</h1>
                         
                         <div className="space-y-6">
                             {posts.map((post) => (
@@ -73,18 +72,8 @@ export default function BlogPage() {
                             
                             {/* Placeholder */}
                             <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700 transition-colors duration-300">
-                                <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Categorias</h2>
-                                <p className="text-gray-500 dark:text-gray-400 text-sm">Em breve...</p>
-                            </div>
-
-                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700 transition-colors duration-300">
-                                <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Posts Recentes</h2>
-                                <p className="text-gray-500 dark:text-gray-400 text-sm">Em breve...</p>
-                            </div>
-
-                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700 transition-colors duration-300">
-                                <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Newsletter</h2>
-                                <p className="text-gray-500 dark:text-gray-400 text-sm">Em breve...</p>
+                                <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">{t('postsRecentes')}</h2>
+                                <p className="text-gray-500 dark:text-gray-400 text-sm">Soon™</p>
                             </div>
 
                         </div>

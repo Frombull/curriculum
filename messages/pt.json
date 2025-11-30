@@ -5,7 +5,9 @@
     "projects": "Projetos",
     "skills": "Habilidades",
     "education": "Formação",
-    "contact": "Contato"
+    "contact": "Contato",
+    "blog": "Blog",
+    "curriculo": "Currículo"
   },
   "HomePage": {
     "title": "Marco Di Toro",
@@ -16,7 +18,7 @@
     "aboutMeP2": "Atualmente, busco uma oportunidade de contratação como Engenheiro de Software (Júnior/Pleno) para contribuir ativamente para o desenvolvimento de soluções inovadoras.",
     "professionalExperience": "Experiência Profissional",
     "projects": "Projetos",
-    "interestsAndSkills": "Interesses & Skills",
+    "interestsAndSkills": "Habilidades",
     "education": "Educação",
     "contact": "Contato",
     "linkedin": "LinkedIn",
@@ -57,7 +59,8 @@
       "backend": "Backend",
       "qaAndTesting": "QA & Testing",
       "devopsAndCloud": "DevOps & Cloud",
-      "unitTesting": "Testes Unitários"
+      "unitTesting": "Testes Unitários",
+      "designPatterns": "Padrões de Projeto e Relacionados"
     },
     "education1": {
       "degree": "Engenharia de Software",
@@ -181,5 +184,8 @@
       "title": "Contato",
       "p1": "Se você tiver alguma dúvida sobre o uso de cookies neste site, pode entrar em contato através das informações disponíveis na seção de contato."
     }
+  },
+  "Blog": {
+    "postsRecentes": "Posts Recentes"
   }
 }

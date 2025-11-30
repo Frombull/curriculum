@@ -141,7 +141,7 @@ export default function Home() {
       <div className="container mx-auto p-4 md:px-8">
         {/* --- Header --- */}
         <header className="text-center mb-12 animate-fade-in">
-          <div className="w-42 h-42 rounded-full mx-auto mb-4 shadow-lg bg-gradient-to-tr from-blue-400 to-purple-500 hover:scale-105 transition-transform duration-300">
+          <div className="w-42 h-42 rounded-full mx-auto mb-4 shadow-lg bg-gradient-to-tr from-blue-400 to-purple-500 hover:scale-101 transition-transform duration-300">
             <Image
               src="/profile_picture.jpg"
               alt={t('profilePictureAlt')}
@@ -252,10 +252,10 @@ export default function Home() {
                     {t('skills.frontend')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
+                    <SkillBadge category="frontend">Blazor</SkillBadge>
                     <SkillBadge category="frontend">React</SkillBadge>
                     <SkillBadge category="frontend">Next.js</SkillBadge>
                     <SkillBadge category="frontend">Tailwind CSS</SkillBadge>
-                    <SkillBadge category="frontend">Blazor</SkillBadge>
                     <SkillBadge category="frontend">JavaScript</SkillBadge>
                     <SkillBadge category="frontend">TypeScript</SkillBadge>
                   </div>
@@ -294,13 +294,27 @@ export default function Home() {
                     {t('skills.devopsAndCloud')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    <SkillBadge category="devops">Docker</SkillBadge>
                     <SkillBadge category="devops">AWS</SkillBadge>
+                    <SkillBadge category="devops">Docker</SkillBadge>
                     <SkillBadge category="devops">Kubernetes</SkillBadge>
                     <SkillBadge category="devops">Jenkins</SkillBadge>
                     <SkillBadge category="devops">Git</SkillBadge>
                   </div>
                 </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-800 dark:text-white mb-2 flex items-center gap-2">
+                    <span className="w-3 h-3 bg-gray-500 rounded-full"></span>
+                    {t('skills.designPatterns')}
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    <SkillBadge category="designPatterns">MVC</SkillBadge>
+                    <SkillBadge category="designPatterns">DDD</SkillBadge>
+                    <SkillBadge category="designPatterns">Clean Architecture</SkillBadge>
+                    <SkillBadge category="designPatterns">RESTful APIs</SkillBadge>
+                  </div>
+                </div>
+
               </div>
             </SectionCard>
 
