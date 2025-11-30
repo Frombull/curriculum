@@ -4,11 +4,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --header-height: 80px;
 }
 
 .dark {
   --background: #0a0a0a;
   --foreground: #ededed;
+  --header-height: 80px;
 }
 
 @theme inline {
@@ -24,6 +26,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 html {

@@ -137,8 +137,8 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 min-h-screen font-sans">
-      <main className="container mx-auto p-4 pt-24 md:pt-24 md:px-8">
+    <div className="bg-gray-100 dark:bg-gray-900 min-h-screen font-sans pt-20">
+      <div className="container mx-auto p-4 md:px-8">
         {/* --- Header --- */}
         <header className="text-center mb-12 animate-fade-in">
           <div className="w-42 h-42 rounded-full mx-auto mb-4 shadow-lg bg-gradient-to-tr from-blue-400 to-purple-500 hover:scale-105 transition-transform duration-300">
@@ -352,7 +352,7 @@ export default function Home() {
         </div>
         <Footer />
 
-      </main>
+      </div>
     </div>
   );
 }

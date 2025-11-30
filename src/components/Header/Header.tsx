@@ -3,13 +3,14 @@
 import { usePathname, Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher/LanguageSwitcher";
 import { useTranslations } from 'next-intl';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export function Header() {
     const pathname = usePathname();
     const t = useTranslations('Header');
     const [darkMode, setDarkMode] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         // Saved theme preference or default to system preference
@@ -25,8 +26,6 @@ export function Header() {
         }
     }, []);
 
-
-
     const toggleDarkMode = () => {
         const newDarkMode = !darkMode;
         setDarkMode(newDarkMode);
@@ -40,13 +39,6 @@ export function Header() {
         }
     };
 
-    const scrollToSection = (sectionId: string) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
     return(
         <header className="fixed top-0 w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 transition-all duration-300">
             <div className="flex items-center justify-between w-full mx-auto max-w-7xl px-4 md:px-6 py-4">
@@ -55,56 +47,22 @@ export function Header() {
                     Work In Progress :)
                 </Link>
 
-                {/* Navigation */}
+                {/* Desktop Navigation */}
                 <nav className="hidden md:block">
                     <ul className="flex items-center gap-1">
                         <li>
-                            <button 
-                                onClick={() => scrollToSection('about')}
-                                className="cursor-pointer px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                            >
-                                {t('about')}
-                            </button>
+                            <Link 
+                                href="/blog" 
+                                className="px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                {t('blog')}
+                            </Link>
                         </li>
                         <li>
-                            <button 
-                                onClick={() => scrollToSection('experience')}
-                                className="cursor-pointer px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                            >
-                                {t('experience')}
-                            </button>
-                        </li>
-                        <li>
-                            <button 
-                                onClick={() => scrollToSection('projects')}
-                                className="cursor-pointer px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                            >
-                                {t('projects')}
-                            </button>
-                        </li>
-                        <li>
-                            <button 
-                                onClick={() => scrollToSection('skills')}
-                                className="cursor-pointer px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                            >
-                                {t('skills')}
-                            </button>
-                        </li>
-                        <li>
-                            <button 
-                                onClick={() => scrollToSection('education')}
-                                className="cursor-pointer px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                            >
-                                {t('education')}
-                            </button>
-                        </li>
-                        <li>
-                            <button 
-                                onClick={() => scrollToSection('contact')}
-                                className="cursor-pointer px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                            >
-                                {t('contact')}
-                            </button>
+                            <Link 
+                                href="/" 
+                                className="px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                {t('curriculo')}
+                            </Link>
                         </li>
                     </ul>
                 </nav>
@@ -121,8 +79,33 @@ export function Header() {
                     </button>
 
                     <LanguageSwitcher />
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        className="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                        aria-label="Toggle menu"
+                    >
+                        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
                 </div>
             </div>
+
+            {/* Mobile Navigation */}
+            {mobileMenuOpen && (
+                <nav className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+                    <ul className="py-2 px-4">
+                        <li>
+                            <Link 
+                                href="/blog" 
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                {t('blog')}
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
+            )}
         </header>
     )
 }
