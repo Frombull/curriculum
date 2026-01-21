@@ -60,7 +60,7 @@ export function Header() {
                         <li>
                             <Link 
                                 href="/blog" 
-                                className="px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-gray-900 dark:after:bg-white after:transition-all after:duration-150 hover:after:w-full">
+                                className="px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-gray-900 dark:after:bg-white after:transition-all after:duration-150 hover:after:w-full pointer-events-none opacity-50">
                                 {t('blog')}
                             </Link>
                         </li>
