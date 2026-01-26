@@ -20,19 +20,26 @@
     "projects": "Projetos",
     "interestsAndSkills": "Habilidades",
     "education": "Educação",
+    "languages": "Idiomas",
     "contact": "Contato",
     "linkedin": "LinkedIn",
     "experience1": {
       "role": "Desenvolvedor de software full-stack",
       "company": "Centro de Pesquisas Avançadas Wernher von Braun",
-      "duration": "04/2025 - Atual",
-      "description": "Desenvolvedor full-stack com experiência em C# e framework ABP. Durante meu período na VBL, atuei no desenvolvimento de aplicações utilizando Blazor e Blazorise no front-end, C# e ABP no back-end, além da criação e integração de APIs REST. Utilizei SQL Server para persistência de dados e Postman para testes e validação de endpoints."
+      "duration": "03/2025 - 11/2025",
+      "description": "Desenvolvedor full-stack atuando com C#, ASP.NET Core e framework ABP. Desenvolvimento de APIs REST e features no front-end com Blazor/Blazorise, utilizando SQL Server para persistência. Experiência em ambiente Agile/Scrum com Git e code reviews semanais; uso de Docker, Postman e testes automatizados (Selenium)."
     },
     "experience2": {
       "role": "Estagiário",
       "company": "WatchGuard Technologies",
       "duration": "09/2021 - 06/2022 (8 meses)",
       "description": "Trabalhei com microsserviços da AWS e Python, implementando soluções com Lambda, SNS, SQS, S3, Cloudfront, entre outros. Adquiri conhecimentos sobre metodologias ágeis (Scrum) enquanto participava de um time internacional. Obtive muita experiência prática, me proporcionando uma compreensão sólida do desenvolvimento de software em um ambiente profissional ágil."
+    },
+    "experience3": {
+      "role": "Desenvolvedor Full-Stack Freelance",
+      "company": "Autônomo | Remoto",
+      "duration": "02/2023 - 02/2025",
+      "description": "Desenvolvimento de aplicações web ponta-a-ponta, com foco em arquitetura escalável e UX. Atuação no ciclo completo (SDLC) com práticas Agile/Scrum. Stack: Next.js, TypeScript, Prisma, PostgreSQL e Docker. Testes com Cypress (E2E) e Postman; CI/CD com GitHub Actions; configuração de domínio e hospedagem."
     },
     "project1": {
       "title": "Pixelforge",
@@ -71,6 +78,10 @@
       "degree": "Técnico em Telecomunicações", 
       "institution": "Escola Técnica de Eletrônica Francisco Moreira da Costa",
       "period": "01/2018 - 12/2020"
+    },
+    "languagesSection": {
+      "pt": "Português (nativo)",
+      "en": "Inglês (fluente)"
     },
     "contactSection": {
       "title": "Contato",

@@ -1,4 +1,4 @@
-import { Mail, Phone, Linkedin, Briefcase, Code, GraduationCap, Star, User, Download, Github, ExternalLink, Award, Calendar, ArrowUpCircle } from 'lucide-react';
+import { Mail, Phone, Linkedin, Briefcase, Code, GraduationCap, Star, User, Download, Github, ExternalLink, Award, Calendar } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Footer } from '@/components/Footer/Footer';
@@ -62,7 +62,7 @@ const ProjectCard = ({ title, description, logo, githubUrl, demoUrl }) => {
   );
 };
 
-const ExperienceCard = ({ role, company, duration, description, logo }) => (
+const ExperienceCard = ({ role, company, duration, description, logo }: { role: string; company: string; duration: string; description: string; logo?: string }) => (
   <div className="flex items-start gap-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 hover:shadow-md transition-all duration-300">
     {logo && <img src={logo} alt={`${company} logo`} className="w-14 h-14 rounded-md object-contain bg-white p-1 shadow-sm" />}
     <div className="flex-1">
@@ -129,13 +129,6 @@ const CertificateCard = ({ title, issuer, date, credentialId, credentialUrl }) =
 export default function Home() {
   const t = useTranslations('HomePage');
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
   return (
     <div className="bg-gray-100 dark:bg-gray-900 min-h-screen font-sans pt-20">
       <div className="container mx-auto p-4 md:px-8">
@@ -160,6 +153,12 @@ export default function Home() {
             <IconText icon={<Mail size={16} />}>
               marco.renzo@ges.inatel.br
             </IconText>
+
+            <a href="https://github.com/Frombull" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              <IconText icon={<Github size={16} />} className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                github.com/Frombull
+              </IconText>
+            </a>
 
             <a href="https://linkedin.com/in/marcoditoro/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               <IconText icon={<Linkedin size={16} />} className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
@@ -191,6 +190,12 @@ export default function Home() {
                 duration={t('experience1.duration')}
                 description={t('experience1.description')}
                 logo="/logos/VBL_LOGO_2.png"
+              />
+              <ExperienceCard
+                role={t('experience3.role')}
+                company={t('experience3.company')}
+                duration={t('experience3.duration')}
+                description={t('experience3.description')}
               />
               <ExperienceCard
                 role={t('experience2.role')}
@@ -296,8 +301,6 @@ export default function Home() {
                   <div className="flex flex-wrap gap-2">
                     <SkillBadge category="devops">AWS</SkillBadge>
                     <SkillBadge category="devops">Docker</SkillBadge>
-                    <SkillBadge category="devops">Kubernetes</SkillBadge>
-                    <SkillBadge category="devops">Jenkins</SkillBadge>
                     <SkillBadge category="devops">Git</SkillBadge>
                   </div>
                 </div>
@@ -333,6 +336,20 @@ export default function Home() {
               </div>
             </SectionCard>
 
+            {/* --- Languages --- */}
+            <SectionCard title={t('languages')} icon={<User className="text-blue-500" />} id="languages">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <Image src="/flags/flag_br.svg" alt="Brazil" width={18} height={18} className="rounded-sm" />
+                  <p className="text-sm text-gray-700 dark:text-gray-300">{t('languagesSection.pt')}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Image src="/flags/flag_us.svg" alt="United States" width={18} height={18} className="rounded-sm" />
+                  <p className="text-sm text-gray-700 dark:text-gray-300">{t('languagesSection.en')}</p>
+                </div>
+              </div>
+            </SectionCard>
+
             {/* --- LinkedIn QR Code --- */}
             <SectionCard title={t('linkedin')} icon={<Linkedin className="text-blue-500" />} id="linkedin">
               <div className="flex justify-center p-2 rounded-lg">
@@ -347,7 +364,7 @@ export default function Home() {
             </SectionCard>
 
             {/* --- Download Resume --- */}
-            <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg animate-fade-in-up">
+            <div id="contact" className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg animate-fade-in-up">
               <h4 className="font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
                 <Download className="text-blue-500" size={20} />
                 {t('contactSection.downloadTitle')}
@@ -356,7 +373,7 @@ export default function Home() {
                 {t('contactSection.downloadDescription')}
               </p>
               <a href="/CV_Marco_Di_Toro.pdf" download="CV_Marco_Di_Toro.pdf" className="w-full">
-                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center gap-2 cursor-pointer transition-colors">
+                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center gap-2 cursor-pointer">
                   <Download size={18} />
                   {t('contactSection.downloadButton')}
                 </button>

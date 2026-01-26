@@ -20,19 +20,26 @@
       "projects": "Projects",
       "interestsAndSkills": "Skills",
       "education": "Education",
+      "languages": "Languages",
       "contact": "Contact",
       "linkedin": "LinkedIn",
       "experience1": {
         "role": "Fullstack developer",
         "company": "Centro de Pesquisas Avançadas Wernher von Braun",
-        "duration": "04/2025 - Current",
-        "description": "Full-stack developer experienced in C# and the ABP framework. During my time at VBL, I worked on applications using Blazor and Blazorise for the front end, C# and ABP for the back end, and developed REST APIs. Used SQL Server for data persistence and Postman for API testing and validation."
+        "duration": "03/2025 - 11/2025",
+        "description": "Full-stack developer working with C#, ASP.NET Core and the ABP framework. Built REST APIs and front-end features with Blazor/Blazorise, using SQL Server for persistence. Worked in an Agile/Scrum environment with Git and weekly code reviews; used Docker, Postman and automated tests (Selenium)."
       },
       "experience2": {
         "role": "Intern",
         "company": "WatchGuard Technologies",
         "duration": "09/2021 - 06/2022 (8 months)",
         "description": "Worked with AWS microservices and Python, implementing solutions with Lambda, SNS, SQS, S3, Cloudfront, among others. Acquired knowledge about agile methodologies (Scrum) while participating in an international team. Gained extensive hands-on experience, providing me with a solid understanding of software development in an agile professional environment."
+      },
+      "experience3": {
+        "role": "Freelance Full-Stack Developer",
+        "company": "Self-Employed | Remote",
+        "duration": "02/2023 - 02/2025",
+        "description": "Built end-to-end web applications with focus on scalable architecture and UX. Managed the full SDLC using Agile/Scrum practices. Worked with Next.js, TypeScript, Prisma, PostgreSQL and Docker; testing with Cypress (E2E) and Postman; CI/CD with GitHub Actions; domain configuration and hosting."
       },
       "project1": {
         "title": "Pixelforge",
@@ -71,6 +78,10 @@
         "degree": "Telecommunications Technician",
         "institution": "Escola Técnica de Eletrônica Francisco Moreira da Costa",
         "period": "01/2018 - 12/2020"
+      },
+      "languagesSection": {
+        "pt": "Portuguese (native)",
+        "en": "English (fluent)"
       },
       "contactSection": {
         "title": "Contact",

@@ -44,7 +44,7 @@ export function Header() {
             <div className="flex items-center justify-between w-full mx-auto max-w-7xl px-4 md:px-6 py-4">
                 {/* Logo */}
                 <Link href="/" className="text-xl font-bold text-gray-900 dark:text-gray-300 tracking-tight hover:text-gray-900 dark:hover:text-white transition-colors">
-                    Work In Progress :)
+                    Marco Di Toro
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -95,6 +95,54 @@ export function Header() {
             {mobileMenuOpen && (
                 <nav className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
                     <ul className="py-2 px-4">
+                        <li>
+                            <Link 
+                                href="/#about" 
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                {t('about')}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                href="/#experience" 
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                {t('experience')}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                href="/#projects" 
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                {t('projects')}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                href="/#skills" 
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                {t('skills')}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                href="/#education" 
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                {t('education')}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                href="/#contact" 
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                {t('contact')}
+                            </Link>
+                        </li>
                         <li>
                             <Link 
                                 href="/blog" 
