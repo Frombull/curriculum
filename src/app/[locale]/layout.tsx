@@ -60,10 +60,36 @@ export default async function LocaleLayout({
   const messages = await getMessages();
  
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(() => {
+  try {
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldDark = stored === 'dark' || (!stored && prefersDark);
+    const root = document.documentElement;
+    if (shouldDark) {
+      root.classList.add('dark');
+      root.style.colorScheme = 'dark';
+      root.style.backgroundColor = '#09090b';
+      root.style.color = '#fafafa';
+    } else {
+      root.classList.remove('dark');
+      root.style.colorScheme = 'light';
+      root.style.backgroundColor = '#f8fafc';
+      root.style.color = '#0f172a';
+    }
+    root.classList.add('theme-ready');
+  } catch (_) {}
+})();`
+          }}
+        />
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#3B82F6" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#4f46e5" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#09090b" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/profile_picture.png" />
       </head>
