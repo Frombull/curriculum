@@ -2,7 +2,6 @@
 
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
-import { Globe } from 'lucide-react';
 import { useState } from 'react';
 import Image from 'next/image';
 
@@ -36,7 +35,7 @@ export function LanguageSwitcher() {
     <div className="relative inline-block text-left z-50">
       <button
         onClick={() => setOpen(prev => !prev)}
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md transition-colors hover:cursor-pointer shadow-sm border border-gray-200 dark:border-gray-700"
+        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 dark:text-zinc-200 bg-white dark:bg-zinc-950 hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-md transition-colors hover:cursor-pointer shadow-sm border border-slate-200/70 dark:border-zinc-800"
       >
         {current?.flag && (
           <Image
@@ -62,7 +61,7 @@ export function LanguageSwitcher() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-44 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 border border-gray-200 dark:border-gray-700">
+        <div className="absolute right-0 mt-2 w-44 rounded-md shadow-lg bg-white dark:bg-zinc-950 ring-1 ring-black/5 border border-slate-200/70 dark:border-zinc-800">
           <div className="py-1">
             {locales.map(({ code, label, flag }) => (
               <button
@@ -70,8 +69,8 @@ export function LanguageSwitcher() {
                 onClick={() => handleChangeLocale(code)}
                 className={`flex items-center gap-2 px-4 py-2 w-full text-left text-sm ${
                   code === locale
-                    ? 'bg-blue-100 dark:bg-blue-900 font-semibold text-blue-800 dark:text-blue-200'
-                    : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    ? 'bg-indigo-50 dark:bg-indigo-950/40 font-semibold text-indigo-900 dark:text-indigo-200'
+                    : 'text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-900'
                 }`}
               >
                 <Image
