@@ -40,10 +40,10 @@ export function Header() {
     };
 
     return(
-        <header className="fixed top-0 w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 transition-all duration-300">
+        <header className="fixed top-0 w-full z-50 bg-white/90 dark:bg-zinc-950/80 backdrop-blur-md border-b border-slate-200/70 dark:border-zinc-800 transition-all duration-300">
             <div className="flex items-center justify-between w-full mx-auto max-w-7xl px-4 md:px-6 py-4">
                 {/* Logo */}
-                <Link href="/" className="text-xl font-bold text-gray-900 dark:text-gray-300 tracking-tight hover:text-gray-900 dark:hover:text-white transition-colors">
+                <Link href="/" className="text-xl font-bold text-slate-900 dark:text-zinc-200 tracking-tight hover:text-slate-950 dark:hover:text-white transition-colors">
                     Marco Di Toro
                 </Link>
 
@@ -53,14 +53,14 @@ export function Header() {
                         <li>
                             <Link 
                                 href="/" 
-                                className="px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-gray-900 dark:after:bg-white after:transition-all after:duration-150 hover:after:w-full">
+                                className="px-3 py-2 text-slate-700 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white transition-colors">
                                 {t('curriculo')}
                             </Link>
                         </li>
                         <li>
                             <Link 
                                 href="/blog" 
-                                className="px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-gray-900 dark:after:bg-white after:transition-all after:duration-150 hover:after:w-full pointer-events-none opacity-50">
+                                className="px-3 py-2 text-slate-700 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white transition-colors pointer-events-none opacity-50">
                                 {t('blog')}
                             </Link>
                         </li>
@@ -72,7 +72,7 @@ export function Header() {
                     {/* Dark Mode Toggle */}
                     <button
                         onClick={toggleDarkMode}
-                        className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors hover:cursor-pointer"
+                        className="p-2 rounded-md text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors hover:cursor-pointer"
                         aria-label="Toggle dark mode"
                     >
                         {darkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -83,7 +83,7 @@ export function Header() {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                        className="md:hidden p-2 rounded-md text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors"
                         aria-label="Toggle menu"
                     >
                         {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -93,13 +93,13 @@ export function Header() {
 
             {/* Mobile Navigation */}
             {mobileMenuOpen && (
-                <nav className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+                <nav className="md:hidden border-t border-slate-200/70 dark:border-zinc-800 bg-white dark:bg-zinc-950">
                     <ul className="py-2 px-4">
                         <li>
                             <Link 
                                 href="/#about" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('about')}
                             </Link>
                         </li>
@@ -107,7 +107,7 @@ export function Header() {
                             <Link 
                                 href="/#experience" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('experience')}
                             </Link>
                         </li>
@@ -115,7 +115,7 @@ export function Header() {
                             <Link 
                                 href="/#projects" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('projects')}
                             </Link>
                         </li>
@@ -123,7 +123,7 @@ export function Header() {
                             <Link 
                                 href="/#skills" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('skills')}
                             </Link>
                         </li>
@@ -131,7 +131,7 @@ export function Header() {
                             <Link 
                                 href="/#education" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('education')}
                             </Link>
                         </li>
@@ -139,7 +139,7 @@ export function Header() {
                             <Link 
                                 href="/#contact" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('contact')}
                             </Link>
                         </li>
@@ -147,7 +147,7 @@ export function Header() {
                             <Link 
                                 href="/blog" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('blog')}
                             </Link>
                         </li>

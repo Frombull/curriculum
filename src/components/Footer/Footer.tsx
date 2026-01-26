@@ -10,31 +10,31 @@ export function Footer() {
     const locale = useLocale();
 
     return (
-        <footer className="bg-gray-50 dark:bg-gray-900/60 border-t border-gray-200 dark:border-gray-800 mt-20">
-          <div className="container mx-auto px-8 py-8">
-            <div className="grid md:grid-cols-2 text-center items-start">
+        <footer className="bg-white dark:bg-zinc-950 border-t border-slate-200/70 dark:border-zinc-800 mt-20">
+          <div className="mx-auto max-w-7xl px-4 md:px-6 py-10">
+            <div className="grid md:grid-cols-2 gap-10 text-center md:text-left items-start">
 
               {/* Coluna */}
-              <div className="pl-44">
-                <h4 className="font-semibold text-gray-700 dark:text-gray-200">{t('navigation')}</h4>
+              <div>
+                <h4 className="font-semibold text-slate-800 dark:text-zinc-200">{t('navigation')}</h4>
                 <ul className="mt-2 space-y-1 text-sm">
-                  <li><a href="#about" className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">{t('about')}</a></li>
-                  <li><a href="#experience" className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">{t('experience')}</a></li>
-                  <li><a href="#projects" className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">{t('projects')}</a></li>
-                  <li><a href="#contact" className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">{t('contact')}</a></li>
+                  <li><a href="#about" className="text-slate-600 dark:text-zinc-400 hover:text-indigo-700 dark:hover:text-indigo-300">{t('about')}</a></li>
+                  <li><a href="#experience" className="text-slate-600 dark:text-zinc-400 hover:text-indigo-700 dark:hover:text-indigo-300">{t('experience')}</a></li>
+                  <li><a href="#projects" className="text-slate-600 dark:text-zinc-400 hover:text-indigo-700 dark:hover:text-indigo-300">{t('projects')}</a></li>
+                  <li><a href="#contact" className="text-slate-600 dark:text-zinc-400 hover:text-indigo-700 dark:hover:text-indigo-300">{t('contact')}</a></li>
                 </ul>
               </div>
 
               {/* Coluna */}
-              <div className="pr-44">
-                <h4 className="font-semibold text-gray-700 dark:text-gray-200">{t('connect')}</h4>
-                <div className="flex justify-center items-center gap-4 mt-2">
+              <div>
+                <h4 className="font-semibold text-slate-800 dark:text-zinc-200">{t('connect')}</h4>
+                <div className="flex justify-center md:justify-start items-center gap-4 mt-2">
                   <a href="https://github.com/Frombull" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
-                    className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
+                    className="text-slate-600 hover:text-indigo-700 dark:text-zinc-400 dark:hover:text-indigo-300 transition-colors">
                     <Github size={24} />
                   </a>
                   <a href="https://linkedin.com/in/marcoditoro" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-                    className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
+                    className="text-slate-600 hover:text-indigo-700 dark:text-zinc-400 dark:hover:text-indigo-300 transition-colors">
                     <Linkedin size={24} />
                   </a>
                 </div>
@@ -42,8 +42,8 @@ export function Footer() {
             </div>
 
             {/* Line */}
-            <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-center text-sm">
-              <p className="text-gray-500 dark:text-gray-400 text-center sm:text-left mb-4 sm:mb-0">
+            <div className="mt-10 pt-6 border-t border-slate-200/70 dark:border-zinc-800 flex flex-col sm:flex-row justify-between items-center text-sm">
+              <p className="text-slate-600 dark:text-zinc-400 text-center sm:text-left mb-4 sm:mb-0">
                 {t('developedWith')} <br/>
               </p>
 
@@ -52,27 +52,27 @@ export function Footer() {
                   href="https://github.com/Frombull/site-feliz"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                  className="text-slate-600 dark:text-zinc-400 hover:text-indigo-700 dark:hover:text-indigo-300"
                 >
                   {t('sourceCode')}
                 </Link>
 
                 <Link href={`/${locale}/privacy-policy`} 
-                  className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                  className="text-slate-600 dark:text-zinc-400 hover:text-indigo-700 dark:hover:text-indigo-300"
                   aria-label={t('privacyPolicy')}
                 >
                   {t('privacyPolicy')}
                 </Link>
 
                 <Link href={`/${locale}/terms-of-service`} 
-                  className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                  className="text-slate-600 dark:text-zinc-400 hover:text-indigo-700 dark:hover:text-indigo-300"
                   aria-label={t('termsOfService')}
                 >
                   {t('termsOfService')}
                 </Link>
 
                 <Link href={`/${locale}/cookies-policy`} 
-                  className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                  className="text-slate-600 dark:text-zinc-400 hover:text-indigo-700 dark:hover:text-indigo-300"
                   aria-label={t('cookiesPolicy')}
                 >
                   {t('cookiesPolicy')}
