@@ -242,11 +242,12 @@ export default function Home() {
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     <SkillBadge category="backend">C#</SkillBadge>
+                    <SkillBadge category="backend">EF Core</SkillBadge>
+                    <SkillBadge category="backend">RabbitMQ</SkillBadge>
                     <SkillBadge category="backend">ABP Framework</SkillBadge>
                     <SkillBadge category="backend">Python</SkillBadge>
                     <SkillBadge category="backend">Node.js</SkillBadge>
                     <SkillBadge category="backend">SQL Server</SkillBadge>
-                    <SkillBadge category="backend">EF Core</SkillBadge>
                   </div>
                 </div>
 
