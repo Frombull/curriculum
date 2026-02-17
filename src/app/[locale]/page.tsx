@@ -146,8 +146,11 @@ export default function Home() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-zinc-50 mb-2">
             {t('title')}
           </h1>
-          <p className="text-lg text-slate-700 dark:text-zinc-300 mt-2 font-medium mb-6">
+          <p className="text-lg text-slate-700 dark:text-zinc-300 mt-2 font-medium">
             {t('subtitle')}
+          </p>
+          <p className="text-sm text-slate-600 dark:text-zinc-400 mt-2 mb-6">
+            {t('subtitle2')}
           </p>
           <div className="mt-6 flex justify-center items-center flex-wrap gap-x-6 gap-y-2 mb-8">
             <IconText icon={<Mail size={16} />}>
