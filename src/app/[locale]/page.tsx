@@ -151,7 +151,7 @@ export default function Home() {
           </p>
           <div className="mt-6 flex justify-center items-center flex-wrap gap-x-6 gap-y-2 mb-8">
             <IconText icon={<Mail size={16} />}>
-              marco.renzo@ges.inatel.br
+              marcorrditoro@gmail.com
             </IconText>
 
             <a href="https://github.com/Frombull" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
@@ -220,7 +220,7 @@ export default function Home() {
                 description={t('project1.description')}
                 logo="/logos/PIXELFORGE_LOGO.jpg"
                 githubUrl="https://github.com/Frombull/PixelForge"
-                demoUrl="https://pixelforge-inatel.vercel.app"
+                demoUrl="https://pixelforge3d.com.br"
               />
               <ProjectCard
                 title={t('project2.title')}
@@ -273,10 +273,11 @@ export default function Home() {
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     <SkillBadge category="backend">C#</SkillBadge>
+                    <SkillBadge category="backend">ABP Framework</SkillBadge>
                     <SkillBadge category="backend">Python</SkillBadge>
                     <SkillBadge category="backend">Node.js</SkillBadge>
                     <SkillBadge category="backend">SQL Server</SkillBadge>
-                    <SkillBadge category="backend">ABP Framework</SkillBadge>
+                    <SkillBadge category="backend">EF Core</SkillBadge>
                   </div>
                 </div>
 
@@ -286,10 +287,10 @@ export default function Home() {
                     {t('skills.qaAndTesting')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
+                    <SkillBadge category="qa">{t('skills.unitTesting')}</SkillBadge>
                     <SkillBadge category="qa">Cypress</SkillBadge>
                     <SkillBadge category="qa">Postman</SkillBadge>
                     <SkillBadge category="qa">Selenium</SkillBadge>
-                    <SkillBadge category="qa">{t('skills.unitTesting')}</SkillBadge>
                   </div>
                 </div>
 
@@ -299,9 +300,9 @@ export default function Home() {
                     {t('skills.devopsAndCloud')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
+                    <SkillBadge category="devops">Azure</SkillBadge>
                     <SkillBadge category="devops">AWS</SkillBadge>
                     <SkillBadge category="devops">Docker</SkillBadge>
-                    <SkillBadge category="devops">Git</SkillBadge>
                   </div>
                 </div>
 
@@ -311,10 +312,12 @@ export default function Home() {
                     {t('skills.designPatterns')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    <SkillBadge category="designPatterns">MVC</SkillBadge>
                     <SkillBadge category="designPatterns">DDD</SkillBadge>
                     <SkillBadge category="designPatterns">Clean Architecture</SkillBadge>
+                    <SkillBadge category="designPatterns">MVC</SkillBadge>
                     <SkillBadge category="designPatterns">RESTful APIs</SkillBadge>
+                    <SkillBadge category="designPatterns">Scrum/Kanban</SkillBadge>
+                    <SkillBadge category="designPatterns">Git</SkillBadge>
                   </div>
                 </div>
 

@@ -58,11 +58,12 @@ export function Header() {
                             </Link>
                         </li>
                         <li>
-                            <Link 
-                                href="/blog" 
-                                className="px-3 py-2 text-slate-700 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white transition-colors">
+                            <span
+                                aria-disabled="true"
+                                className="px-3 py-2 text-slate-400 dark:text-zinc-500 cursor-not-allowed transition-colors"
+                            >
                                 {t('blog')}
-                            </Link>
+                            </span>
                         </li>
                     </ul>
                 </nav>
@@ -144,12 +145,12 @@ export function Header() {
                             </Link>
                         </li>
                         <li>
-                            <Link 
-                                href="/blog" 
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
+                            <span
+                                aria-disabled="true"
+                                className="block px-3 py-2 rounded-md text-slate-400 dark:text-zinc-500 cursor-not-allowed transition-colors"
+                            >
                                 {t('blog')}
-                            </Link>
+                            </span>
                         </li>
                     </ul>
                 </nav>

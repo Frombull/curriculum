@@ -1,210 +1,210 @@
 {
-    "Header": {
-      "about": "About",
-      "experience": "Experience",
-      "projects": "Projects",
-      "skills": "Skills",
-      "education": "Education",
-      "contact": "Contact",
-      "blog": "Blog",
-      "curriculo": "Resume"
+  "Header": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "education": "Education",
+    "contact": "Contact",
+    "blog": "Blog",
+    "curriculo": "Resume"
+  },
+  "HomePage": {
+    "title": "Marco Di Toro",
+    "subtitle": "Full Stack Developer | 3 years experience | Software Engineer | Telecommunications Technician",
+    "profilePictureAlt": "Profile Picture",
+    "aboutMe": "About Me",
+    "aboutMeP1": "Telecommunications Technician passionate about software development. I am proactive, continuously learning new technologies and applying that knowledge to my personal projects.",
+    "aboutMeP2": "Currently, I am seeking a position as a Software Engineer (Junior/Mid-level) to actively contribute to the development of innovative solutions.",
+    "professionalExperience": "Professional Experience",
+    "projects": "Projects",
+    "interestsAndSkills": "Skills",
+    "education": "Education",
+    "languages": "Languages",
+    "contact": "Contact",
+    "linkedin": "LinkedIn",
+    "experience1": {
+      "role": "Fullstack developer",
+      "company": "Wernher von Braun",
+      "duration": "03/2025 - 11/2025",
+      "description": "Full-stack developer working with C#, ASP.NET Core and the ABP framework. Built REST APIs and front-end features with Blazor/Blazorise, using SQL Server for persistence. Worked in an Agile/Scrum environment with Git and weekly code reviews; used Docker, Postman and automated tests (Selenium)."
     },
-    "HomePage": {
-      "title": "Marco Di Toro",
-      "subtitle": "Full Stack Developer | 4 years experience | Software Engineer | Telecommunications Technician",
-      "profilePictureAlt": "Profile Picture",
-      "aboutMe": "About Me",
-      "aboutMeP1": "Telecommunications Technician passionate about software development. I am proactive, continuously learning new technologies and applying that knowledge to my personal projects.",
-      "aboutMeP2": "Currently, I am seeking a position as a Software Engineer (Junior/Mid-level) to actively contribute to the development of innovative solutions.",
-      "professionalExperience": "Professional Experience",
-      "projects": "Projects",
-      "interestsAndSkills": "Skills",
-      "education": "Education",
-      "languages": "Languages",
-      "contact": "Contact",
-      "linkedin": "LinkedIn",
-      "experience1": {
-        "role": "Fullstack developer",
-        "company": "Centro de Pesquisas Avançadas Wernher von Braun",
-        "duration": "03/2025 - 11/2025",
-        "description": "Full-stack developer working with C#, ASP.NET Core and the ABP framework. Built REST APIs and front-end features with Blazor/Blazorise, using SQL Server for persistence. Worked in an Agile/Scrum environment with Git and weekly code reviews; used Docker, Postman and automated tests (Selenium)."
-      },
-      "experience2": {
-        "role": "Intern",
-        "company": "WatchGuard Technologies",
-        "duration": "09/2021 - 06/2022 (8 months)",
-        "description": "Worked with AWS microservices and Python, implementing solutions with Lambda, SNS, SQS, S3, Cloudfront, among others. Acquired knowledge about agile methodologies (Scrum) while participating in an international team. Gained extensive hands-on experience, providing me with a solid understanding of software development in an agile professional environment."
-      },
-      "experience3": {
-        "role": "Freelance Full-Stack Developer",
-        "company": "Self-Employed | Remote",
-        "duration": "02/2023 - 02/2025",
-        "description": "Built end-to-end web applications with focus on scalable architecture and UX. Managed the full SDLC using Agile/Scrum practices. Worked with Next.js, TypeScript, Prisma, PostgreSQL and Docker; testing with Cypress (E2E) and Postman; CI/CD with GitHub Actions; domain configuration and hosting."
-      },
-      "project1": {
-        "title": "Pixelforge",
-        "description": "Web platform built with Next.js and p5.js to help engineering professors demonstrate interactive simulations of practical concepts such as pathfinding (A*), flocking, computer graphics, multimedia (FFT), and matrix transformations. The project won 1st place at the FETIN science fair and later became my undergraduate thesis."
-      },
-      "project2": {
-        "title": "PROJETE VRTL 2020: Quality control with machine learning",
-        "description": "Responsible for the 3rd year technical project. Developed for production line, with the ability to identify, separate and catalog products in real time, using a trained neural network."
-      },
-      "project3": {
-        "title": "PROJETE 2019: Baropodometer",
-        "description": "2nd year technical project. A mat was made capable of identifying the user's type of step and suggesting possible corrections for it."
-      },
-      "project4": {
-        "title": "PROJETE 2018: Automatic gate with wi-fi",
-        "description": "1st year technical project. Garage door, capable of automatically opening and closing when detecting the user's presence on their local wi-fi network."
-      },
-      "project5": {
-        "title": "Groovetree",
-        "description": "Web platform built with Next.js and PostgreSQL (via Supabase) that allows musicians and artists to create customizable pages to share their music, links, and events. It features OAuth authentication and data management through Prisma ORM, supporting embedded players and full layout and style customization."
-      },
-      "skills": {
-        "frontend": "Frontend",
-        "backend": "Backend",
-        "qaAndTesting": "QA & Testing",
-        "devopsAndCloud": "DevOps & Cloud",
-        "unitTesting": "Unit Testing",
-        "designPatterns": "Design Patterns and Related"
-      },
-      "education1": {
-        "degree": "Software Engineering",
-        "institution": "Instituto Nacional de Telecomunicações - Inatel",
-        "period": "01/2021 – Current"
-      },
-      "education2": {
-        "degree": "Telecommunications Technician",
-        "institution": "Escola Técnica de Eletrônica Francisco Moreira da Costa",
-        "period": "01/2018 - 12/2020"
-      },
-      "languagesSection": {
-        "pt": "Portuguese (native)",
-        "en": "English (fluent)"
-      },
-      "contactSection": {
-        "title": "Contact",
-        "subtitle": "Let's work together!",
-        "description": "I am always open to new opportunities and interesting projects. Contact me through any of the channels below.",
-        "downloadTitle": "Download my resume",
-        "downloadDescription": "Download a PDF version of my resume for future reference.",
-        "downloadButton": "Download (PDF)"
-      },
-      "linkedinQRCodeAlt": "QR Code for LinkedIn",
-      "linkedinQRCodeTitle": "Visit LinkedIn",
-      "logoAlt": "logo"
+    "experience2": {
+      "role": "Intern",
+      "company": "WatchGuard Technologies",
+      "duration": "09/2021 - 06/2022 (8 months)",
+      "description": "Worked with AWS microservices and Python, implementing solutions with Lambda, SNS, SQS, S3, Cloudfront, among others. Acquired knowledge about agile methodologies (Scrum) while participating in an international team. Gained extensive hands-on experience, providing me with a solid understanding of software development in an agile professional environment."
     },
-    "footer": {
-      "navigation": "Navigation",
-      "connect": "Connect",
-      "sourceCode": "Source Code",
-      "privacyPolicy": "Privacy Policy",
-      "termsOfService": "Terms of Service",
-      "cookiesPolicy": "Cookies Policy",
-      "developedWith": "Developed with Next.js and Tailwind CSS.",
-      "about": "About",
-      "experience": "Experience",
-      "projects": "Projects",
-      "contact": "Contact"
+    "experience3": {
+      "role": "Freelance Full-Stack Developer",
+      "company": "Self-Employed | Remote",
+      "duration": "02/2023 - 02/2025",
+      "description": "Built end-to-end web applications with focus on scalable architecture and UX. Managed the full SDLC using Agile/Scrum practices. Worked with Next.js, TypeScript, Prisma, PostgreSQL and Docker; testing with Cypress (E2E) and Postman; CI/CD with GitHub Actions; domain configuration and hosting."
     },
-    "PrivacyPolicy": {
-      "title": "Privacy Policy",
-      "introduction": "This is a personal portfolio website created to showcase my resume and professional projects.",
-      "informationWeCollect": {
-        "title": "Information We Collect",
-        "p1": "This website does not collect, store, or process any personal information from visitors. There are no contact forms, login systems, or any data collection mechanisms."
-      },
-      "howWeUseYourInformation": {
-        "title": "Browsing",
-        "p1": "You can freely browse this website without providing any personal information. All information displayed is public and related to my professional profile."
-      },
-      "cookies": {
-        "title": "Cookies",
-        "p1": "This website uses only essential cookies for basic functionality, such as language preference and theme (light/dark mode). These cookies are stored locally in your browser and are not shared with third parties."
-      },
-      "thirdPartyServices": {
-        "title": "Third-Party Services",
-        "p1": "This website does not use third-party services for analytics, tracking, or advertising. There is no integration with Google Analytics, Facebook Pixel, or similar services."
-      },
-      "security": {
-        "title": "Security",
-        "p1": "Since we do not collect personal data, there are no risks related to storage or leakage of visitor information."
-      },
-      "changesToThisPolicy": {
-        "title": "Changes to This Policy",
-        "p1": "This policy may be updated occasionally. Any changes will be posted on this page."
-      },
-      "contactUs": {
-        "title": "Contact Us",
-        "p1": "If you have any questions about this Privacy Policy, you can contact me through the information available in the contact section of the website."
-      }
+    "project1": {
+      "title": "Pixelforge",
+      "description": "Web platform built with Next.js and p5.js to help engineering professors demonstrate interactive simulations of practical concepts such as pathfinding (A*), flocking, computer graphics, multimedia (FFT), and matrix transformations. The project won 1st place at the FETIN science fair and later became my undergraduate thesis."
     },
-    "TermsOfService": {
-      "title": "Terms of Service",
-      "introduction": "This is a personal portfolio website with public access. By accessing this website, you agree to the following terms.",
-      "useOfWebsite": {
-        "title": "Use of the Website",
-        "p1": "This website is made available free of charge for informational purposes. You can view and browse the content freely. The content presented is solely intended to demonstrate my professional experience and projects."
-      },
-      "intellectualProperty": {
-        "title": "Intellectual Property",
-        "p1": "The content of this website, including text, images, and design, is my own work. Projects and work mentioned may have shared rights with companies or institutions where they were developed."
-      },
-      "disclaimer": {
-        "title": "Disclaimer",
-        "p1": "The information on this website is provided 'as is' for informational purposes. While I strive to keep the information up-to-date and accurate, I make no warranties about the completeness or accuracy of the content."
-      },
-      "limitationOfLiability": {
-        "title": "Limitation of Liability",
-        "p1": "This website is only an informational portfolio. I am not responsible for any decisions made based on the information presented here."
-      },
-      "governingLaw": {
-        "title": "Governing Law",
-        "p1": "These terms are governed by Brazilian law."
-      },
-      "changesToTheseTerms": {
-        "title": "Changes to These Terms",
-        "p1": "These terms may be updated occasionally. Changes will be posted on this page."
-      },
-      "contactUs": {
-        "title": "Contact Us",
-        "p1": "If you have any questions about these Terms of Service, you can contact me through the information available in the contact section of the website."
-      }
+    "project2": {
+      "title": "PROJETE VRTL 2020: Quality control with machine learning",
+      "description": "Responsible for the 3rd year technical project. Developed for production line, with the ability to identify, separate and catalog products in real time, using a trained neural network."
     },
-    "CookiesPolicy": {
-      "title": "Cookies Policy",
-      "introduction": "This Cookies Policy explains how this website uses cookies to improve your browsing experience.",
-      "whatAreCookies": {
-        "title": "What Are Cookies?",
-        "p1": "Cookies are small text files stored in your browser when you visit a website. They allow the website to remember your preferences and settings."
-      },
-      "howWeUseCookies": {
-        "title": "How We Use Cookies",
-        "p1": "This website uses only essential cookies stored locally in your browser to: (1) Remember your language preference (Portuguese or English), (2) Remember your theme preference (light or dark mode). These cookies do not track your activity, do not collect personal data, and are not shared with third parties."
-      },
-      "managingCookies": {
-        "title": "Managing Cookies",
-        "p1": "You can clear your browser cookies at any time through your settings. If you disable cookies, your language and theme preferences will not be saved between visits to the website."
-      },
-      "changesToThisPolicy": {
-        "title": "Changes to This Policy",
-        "p1": "This policy may be updated occasionally. Changes will be posted on this page."
-      },
-      "contactUs": {
-        "title": "Contact Us",
-        "p1": "If you have any questions about the use of cookies on this website, you can contact me through the information available in the contact section."
-      }
+    "project3": {
+      "title": "PROJETE 2019: Baropodometer",
+      "description": "2nd year technical project. A mat was made capable of identifying the user's type of step and suggesting possible corrections for it."
     },
-    "Blog": {
-      "postsRecentes": "Recent Posts",
-      "empty": "No posts available right now.",
-      "sidebarSoon": "Coming soon."
+    "project4": {
+      "title": "PROJETE 2018: Automatic gate with wi-fi",
+      "description": "1st year technical project. Garage door, capable of automatically opening and closing when detecting the user's presence on their local wi-fi network."
     },
-    "blogPostCard": {
-      "readMore": "Read more"
+    "project5": {
+      "title": "Groovetree",
+      "description": "Web platform built with Next.js and PostgreSQL (via Supabase) that allows musicians and artists to create customizable pages to share their music, links, and events. It features OAuth authentication and data management through Prisma ORM, supporting embedded players and full layout and style customization."
     },
-    "BlogPost": {
-      "backToBlog": "← Back to blog"
+    "skills": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "qaAndTesting": "QA & Testing",
+      "devopsAndCloud": "DevOps & Cloud",
+      "unitTesting": "Unit Testing",
+      "designPatterns": "Architecture & Others"
+    },
+    "education1": {
+      "degree": "Software Engineering",
+      "institution": "Instituto Nacional de Telecomunicações - Inatel",
+      "period": "01/2021 – Current"
+    },
+    "education2": {
+      "degree": "Telecommunications Technician",
+      "institution": "Escola Técnica de Eletrônica Francisco Moreira da Costa",
+      "period": "01/2018 - 12/2020"
+    },
+    "languagesSection": {
+      "pt": "Portuguese (native)",
+      "en": "English (fluent)"
+    },
+    "contactSection": {
+      "title": "Contact",
+      "subtitle": "Let's work together!",
+      "description": "I am always open to new opportunities and interesting projects. Contact me through any of the channels below.",
+      "downloadTitle": "Download my resume",
+      "downloadDescription": "Download a PDF version of my resume for future reference.",
+      "downloadButton": "Download (PDF)"
+    },
+    "linkedinQRCodeAlt": "QR Code for LinkedIn",
+    "linkedinQRCodeTitle": "Visit LinkedIn",
+    "logoAlt": "logo"
+  },
+  "footer": {
+    "navigation": "Navigation",
+    "connect": "Connect",
+    "sourceCode": "Source Code",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiesPolicy": "Cookies Policy",
+    "developedWith": "Developed with Next.js and Tailwind CSS.",
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "PrivacyPolicy": {
+    "title": "Privacy Policy",
+    "introduction": "This is a personal portfolio website created to showcase my resume and professional projects.",
+    "informationWeCollect": {
+      "title": "Information We Collect",
+      "p1": "This website does not collect, store, or process any personal information from visitors. There are no contact forms, login systems, or any data collection mechanisms."
+    },
+    "howWeUseYourInformation": {
+      "title": "Browsing",
+      "p1": "You can freely browse this website without providing any personal information. All information displayed is public and related to my professional profile."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "p1": "This website uses only essential cookies for basic functionality, such as language preference and theme (light/dark mode). These cookies are stored locally in your browser and are not shared with third parties."
+    },
+    "thirdPartyServices": {
+      "title": "Third-Party Services",
+      "p1": "This website does not use third-party services for analytics, tracking, or advertising. There is no integration with Google Analytics, Facebook Pixel, or similar services."
+    },
+    "security": {
+      "title": "Security",
+      "p1": "Since we do not collect personal data, there are no risks related to storage or leakage of visitor information."
+    },
+    "changesToThisPolicy": {
+      "title": "Changes to This Policy",
+      "p1": "This policy may be updated occasionally. Any changes will be posted on this page."
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "p1": "If you have any questions about this Privacy Policy, you can contact me through the information available in the contact section of the website."
     }
+  },
+  "TermsOfService": {
+    "title": "Terms of Service",
+    "introduction": "This is a personal portfolio website with public access. By accessing this website, you agree to the following terms.",
+    "useOfWebsite": {
+      "title": "Use of the Website",
+      "p1": "This website is made available free of charge for informational purposes. You can view and browse the content freely. The content presented is solely intended to demonstrate my professional experience and projects."
+    },
+    "intellectualProperty": {
+      "title": "Intellectual Property",
+      "p1": "The content of this website, including text, images, and design, is my own work. Projects and work mentioned may have shared rights with companies or institutions where they were developed."
+    },
+    "disclaimer": {
+      "title": "Disclaimer",
+      "p1": "The information on this website is provided 'as is' for informational purposes. While I strive to keep the information up-to-date and accurate, I make no warranties about the completeness or accuracy of the content."
+    },
+    "limitationOfLiability": {
+      "title": "Limitation of Liability",
+      "p1": "This website is only an informational portfolio. I am not responsible for any decisions made based on the information presented here."
+    },
+    "governingLaw": {
+      "title": "Governing Law",
+      "p1": "These terms are governed by Brazilian law."
+    },
+    "changesToTheseTerms": {
+      "title": "Changes to These Terms",
+      "p1": "These terms may be updated occasionally. Changes will be posted on this page."
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "p1": "If you have any questions about these Terms of Service, you can contact me through the information available in the contact section of the website."
+    }
+  },
+  "CookiesPolicy": {
+    "title": "Cookies Policy",
+    "introduction": "This Cookies Policy explains how this website uses cookies to improve your browsing experience.",
+    "whatAreCookies": {
+      "title": "What Are Cookies?",
+      "p1": "Cookies are small text files stored in your browser when you visit a website. They allow the website to remember your preferences and settings."
+    },
+    "howWeUseCookies": {
+      "title": "How We Use Cookies",
+      "p1": "This website uses only essential cookies stored locally in your browser to: (1) Remember your language preference (Portuguese or English), (2) Remember your theme preference (light or dark mode). These cookies do not track your activity, do not collect personal data, and are not shared with third parties."
+    },
+    "managingCookies": {
+      "title": "Managing Cookies",
+      "p1": "You can clear your browser cookies at any time through your settings. If you disable cookies, your language and theme preferences will not be saved between visits to the website."
+    },
+    "changesToThisPolicy": {
+      "title": "Changes to This Policy",
+      "p1": "This policy may be updated occasionally. Changes will be posted on this page."
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "p1": "If you have any questions about the use of cookies on this website, you can contact me through the information available in the contact section."
+    }
+  },
+  "Blog": {
+    "postsRecentes": "Recent Posts",
+    "empty": "No posts available right now.",
+    "sidebarSoon": "Coming soon."
+  },
+  "blogPostCard": {
+    "readMore": "Read more"
+  },
+  "BlogPost": {
+    "backToBlog": "← Back to blog"
   }
+}

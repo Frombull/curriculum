@@ -11,7 +11,7 @@
   },
   "HomePage": {
     "title": "Marco Di Toro",
-    "subtitle": "Desenvolvedor Full-Stack | 4 anos de experiência | Engenheiro de Software | Técnico em Telecomunicações ",
+    "subtitle": "Desenvolvedor Full-Stack | 3 anos de experiência | Engenheiro de Software | Técnico em Telecomunicações ",
     "profilePictureAlt": "Foto de Perfil",
     "aboutMe": "Sobre Mim",
     "aboutMeP1": "Técnico em telecomunicações com paixão por desenvolvimento de software. Tenho um perfil proativo, sempre adquirindo conhecimento em novas tecnologias e aplicando esse aprendizado em projetos pessoais.",
@@ -25,7 +25,7 @@
     "linkedin": "LinkedIn",
     "experience1": {
       "role": "Desenvolvedor de software full-stack",
-      "company": "Centro de Pesquisas Avançadas Wernher von Braun",
+      "company": "Wernher von Braun",
       "duration": "03/2025 - 11/2025",
       "description": "Desenvolvedor full-stack atuando com C#, ASP.NET Core e framework ABP. Desenvolvimento de APIs REST e features no front-end com Blazor/Blazorise, utilizando SQL Server para persistência. Experiência em ambiente Agile/Scrum com Git e code reviews semanais; uso de Docker, Postman e testes automatizados (Selenium)."
     },
@@ -67,7 +67,7 @@
       "qaAndTesting": "QA & Testing",
       "devopsAndCloud": "DevOps & Cloud",
       "unitTesting": "Testes Unitários",
-      "designPatterns": "Padrões de Projeto e Relacionados"
+      "designPatterns": "Arquitetura e Outros"
     },
     "education1": {
       "degree": "Engenharia de Software",
