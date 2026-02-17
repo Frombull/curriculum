@@ -197,6 +197,14 @@
     }
   },
   "Blog": {
-    "postsRecentes": "Posts Recentes"
+    "postsRecentes": "Posts Recentes",
+    "empty": "Nenhum post disponível no momento.",
+    "sidebarSoon": "Em breve."
+  },
+  "blogPostCard": {
+    "readMore": "Ler mais"
+  },
+  "BlogPost": {
+    "backToBlog": "← Voltar para o blog"
   }
 }
