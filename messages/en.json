@@ -21,6 +21,7 @@
     "projects": "Projects",
     "interestsAndSkills": "Skills",
     "education": "Education",
+    "certificates": "Certificates",
     "languages": "Languages",
     "contact": "Contact",
     "linkedin": "LinkedIn",
@@ -73,12 +74,26 @@
     "education1": {
       "degree": "Software Engineering",
       "institution": "Instituto Nacional de Telecomunicações - Inatel",
-      "period": "01/2021 – Current"
+      "period": "01/2021 – Cuhttps://www.freecodecamp.org/certification/marcoditoro/foundational-c-sharp-with-microsoftrrent"
     },
     "education2": {
       "degree": "Telecommunications Technician",
       "institution": "Escola Técnica de Eletrônica Francisco Moreira da Costa",
       "period": "01/2018 - 12/2020"
+    },
+    "certificate1": {
+      "title": "Foundational C# with Microsoft",
+      "issuer": "Microsoft",
+      "date": "February 2026",
+      "credentialId": "",
+      "credentialUrl": "https://www.freecodecamp.org/certification/marcoditoro/foundational-c-sharp-with-microsoft"
+    },
+    "certificate2": {
+      "title": "Microsoft Azure Fundamentals (AZ-900)",
+      "issuer": "Microsoft",
+      "date": "In progress",
+      "credentialId": "",
+      "credentialUrl": ""
     },
     "languagesSection": {
       "pt": "Portuguese (native)",

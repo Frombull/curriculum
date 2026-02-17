@@ -21,6 +21,7 @@
     "projects": "Projetos",
     "interestsAndSkills": "Habilidades",
     "education": "Educação",
+    "certificates": "Certificados",
     "languages": "Idiomas",
     "contact": "Contato",
     "linkedin": "LinkedIn",
@@ -76,9 +77,23 @@
       "period": "01/2021 – Atual"
     },
     "education2": {
-      "degree": "Técnico em Telecomunicações", 
+      "degree": "Técnico em Telecomunicações",
       "institution": "Escola Técnica de Eletrônica Francisco Moreira da Costa",
       "period": "01/2018 - 12/2020"
+    },
+    "certificate1": {
+      "title": "Foundational C# with Microsoft",
+      "issuer": "Microsoft",
+      "date": "Fevereiro 2026",
+      "credentialId": "",
+      "credentialUrl": ""
+    },
+    "certificate2": {
+      "title": "Microsoft Azure Fundamentals (AZ-900)",
+      "issuer": "Microsoft",
+      "date": "Em curso",
+      "credentialId": "",
+      "credentialUrl": ""
     },
     "languagesSection": {
       "pt": "Português (nativo)",

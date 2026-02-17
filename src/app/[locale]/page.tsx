@@ -1,4 +1,4 @@
-import { Mail, Phone, Linkedin, Briefcase, Code, GraduationCap, Star, User, Download, Github, ExternalLink, Award, Calendar } from 'lucide-react';
+import { Mail, Phone, Linkedin, Briefcase, Code, GraduationCap, Star, User, Download, Github, ExternalLink, Award } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Footer } from '@/components/Footer/Footer';
@@ -91,40 +91,6 @@ const SkillBadge = ({ children, category }) => {
     </span>
   );
 };
-
-// TODO: Add certificate cards
-const CertificateCard = ({ title, issuer, date, credentialId, credentialUrl }) => (
-  <div className="flex items-start gap-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 hover:shadow-md transition-all duration-300 group">
-    <div className="flex-shrink-0">
-      <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center">
-        <Award className="text-white" size={24} />
-      </div>
-    </div>
-    <div className="flex-1">
-      <div className="flex items-start justify-between">
-        <div>
-          <h3 className="font-bold text-md text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{title}</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-300 font-medium">{issuer}</p>
-          <div className="flex items-center gap-1 mt-1">
-            <Calendar size={14} className="text-gray-400" />
-            <p className="text-xs text-gray-500 dark:text-gray-400">{date}</p>
-          </div>
-          {credentialId && (
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-              ID: {credentialId}
-            </p>
-          )}
-        </div>
-        {credentialUrl && (
-          <a href={credentialUrl} target="_blank" rel="noopener noreferrer"
-            className="p-1.5 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            <ExternalLink size={16} />
-          </a>
-        )}
-      </div>
-    </div>
-  </div>
-);
 
 export default function Home() {
   const t = useTranslations('HomePage');
@@ -339,6 +305,53 @@ export default function Home() {
                 <h3 className="font-bold text-md text-slate-900 dark:text-zinc-50">{t('education2.degree')}</h3>
                 <p className="text-sm text-slate-600 dark:text-zinc-300">{t('education2.institution')}</p>
                 <p className="text-xs text-slate-500 dark:text-zinc-400">{t('education2.period')}</p>
+              </div>
+            </SectionCard>
+
+            {/* --- Certificates --- */}
+            <SectionCard title={t('certificates')} icon={<Award className="text-indigo-600 dark:text-indigo-400" />} id="certificates">
+              <div className="flex items-start gap-3">
+                <img 
+                  src="/logos/MICROSOFT_LOGO.png" 
+                  alt="Microsoft logo" 
+                  className="w-10 h-10 rounded object-contain bg-white p-0.5 shadow-sm flex-shrink-0" 
+                />
+                <div>
+                  {t('certificate1.credentialUrl') && t('certificate1.credentialUrl').length > 0 ? (
+                    <a href={t('certificate1.credentialUrl')} target="_blank" rel="noopener noreferrer">
+                      <h3 className="font-bold text-md text-indigo-700 dark:text-indigo-300 hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors hover:underline">{t('certificate1.title')}</h3>
+                    </a>
+                  ) : (
+                    <h3 className="font-bold text-md text-slate-900 dark:text-zinc-50">{t('certificate1.title')}</h3>
+                  )}
+                  <p className="text-sm text-slate-600 dark:text-zinc-300">{t('certificate1.issuer')}</p>
+                  <p className="text-xs text-slate-500 dark:text-zinc-400">{t('certificate1.date')}</p>
+                  {t('certificate1.credentialId') && t('certificate1.credentialId').length > 0 && (
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1">ID: {t('certificate1.credentialId')}</p>
+                  )}
+                </div>
+              </div>
+              <div className="border-t border-slate-200 dark:border-zinc-800 my-4"></div>
+              <div className="flex items-start gap-3">
+                <img 
+                  src="/logos/MICROSOFT_LOGO.png" 
+                  alt="Microsoft logo" 
+                  className="w-10 h-10 rounded object-contain bg-white p-0.5 shadow-sm flex-shrink-0" 
+                />
+                <div>
+                  {t('certificate2.credentialUrl') && t('certificate2.credentialUrl').length > 0 ? (
+                    <a href={t('certificate2.credentialUrl')} target="_blank" rel="noopener noreferrer">
+                      <h3 className="font-bold text-md text-indigo-700 dark:text-indigo-300 hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors hover:underline">{t('certificate2.title')}</h3>
+                    </a>
+                  ) : (
+                    <h3 className="font-bold text-md text-slate-900 dark:text-zinc-50">{t('certificate2.title')}</h3>
+                  )}
+                  <p className="text-sm text-slate-600 dark:text-zinc-300">{t('certificate2.issuer')}</p>
+                  <p className="text-xs text-slate-500 dark:text-zinc-400">{t('certificate2.date')}</p>
+                  {t('certificate2.credentialId') && t('certificate2.credentialId').length > 0 && (
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1">ID: {t('certificate2.credentialId')}</p>
+                  )}
+                </div>
               </div>
             </SectionCard>
 
