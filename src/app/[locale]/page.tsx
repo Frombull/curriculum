@@ -13,7 +13,7 @@ const IconText = ({ icon, children, className = "text-gray-600 dark:text-gray-40
 const SectionCard = ({ title, icon, children, id }) => (
   <div id={id} className="bg-white dark:bg-zinc-900 mb-4 rounded-md border border-slate-200/70 dark:border-zinc-800 shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 animate-fade-in-up">
     <div className="p-6">
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center gap-3 mb-6">
         {icon}
         <h2 className="text-2xl font-bold text-slate-900 dark:text-zinc-50">{title}</h2>
       </div>
@@ -28,7 +28,7 @@ const ProjectCard = ({ title, description, logo, githubUrl, demoUrl }) => {
   const projectUrl = demoUrl || githubUrl;
 
   return (
-    <div className="flex items-start gap-4 p-4 border border-slate-200 dark:border-zinc-800 rounded-md bg-slate-50/60 dark:bg-zinc-900/40 hover:bg-slate-50 dark:hover:bg-zinc-900/60 transition-colors duration-200 group">
+    <div className="flex items-start gap-4 p-2">
       {logo && <img src={logo} alt={`${title} logo`} className="w-14 h-14 rounded object-contain bg-white shadow-sm" />}
       <div className="flex-1">
         <div className="flex items-start justify-between">
@@ -63,7 +63,7 @@ const ProjectCard = ({ title, description, logo, githubUrl, demoUrl }) => {
 };
 
 const ExperienceCard = ({ role, company, duration, description, logo }: { role: string; company: string; duration: string; description: string; logo?: string }) => (
-  <div className="flex items-start gap-4 p-4 border border-slate-200 dark:border-zinc-800 rounded-md bg-slate-50/60 dark:bg-zinc-900/40 hover:bg-slate-50 dark:hover:bg-zinc-900/60 transition-colors duration-200">
+  <div className="flex items-start gap-4 p-2">
     {logo && <img src={logo} alt={`${company} logo`} className="w-14 h-14 rounded object-contain bg-white p-1 shadow-sm" />}
     <div className="flex-1">
       <h3 className="font-bold text-md text-indigo-700 dark:text-indigo-300">{role}</h3>
@@ -160,12 +160,14 @@ export default function Home() {
                 description={t('experience1.description')}
                 logo="/logos/VBL_LOGO_2.png"
               />
+              <div className="border-t border-slate-200 dark:border-zinc-800 my-4"></div>
               <ExperienceCard
                 role={t('experience3.role')}
                 company={t('experience3.company')}
                 duration={t('experience3.duration')}
                 description={t('experience3.description')}
               />
+              <div className="border-t border-slate-200 dark:border-zinc-800 my-4"></div>
               <ExperienceCard
                 role={t('experience2.role')}
                 company={t('experience2.company')}
@@ -184,6 +186,7 @@ export default function Home() {
                 githubUrl="https://github.com/Frombull/Groovetree"
                 demoUrl="https://groovetr.ee"
               />
+              <div className="border-t border-slate-200 dark:border-zinc-800 my-4"></div>
               <ProjectCard
                 title={t('project1.title')}
                 description={t('project1.description')}
@@ -191,6 +194,7 @@ export default function Home() {
                 githubUrl="https://github.com/Frombull/PixelForge"
                 demoUrl="https://pixelforge3d.com.br"
               />
+              <div className="border-t border-slate-200 dark:border-zinc-800 my-4"></div>
               <ProjectCard
                 title={t('project2.title')}
                 description={t('project2.description')}
@@ -198,6 +202,7 @@ export default function Home() {
                 githubUrl="https://github.com/Frombull" // TODO: Add url
                 demoUrl="" // TODO: Add url
               />
+              <div className="border-t border-slate-200 dark:border-zinc-800 my-4"></div>
               <ProjectCard
                 title={t('project3.title')}
                 description={t('project3.description')}
@@ -205,6 +210,7 @@ export default function Home() {
                 githubUrl="https://github.com/Frombull" // TODO: Add url
                 demoUrl="" // TODO: Add url
               />
+              <div className="border-t border-slate-200 dark:border-zinc-800 my-4"></div>
               <ProjectCard
                 title={t('project4.title')}
                 description={t('project4.description')}
