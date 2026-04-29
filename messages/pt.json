@@ -40,7 +40,7 @@
     "experience3": {
       "role": "Desenvolvedor Full-Stack Freelance",
       "company": "Autônomo | Remoto",
-      "duration": "02/2023 - 02/2025",
+      "duration": "02/2023 - Atual",
       "description": "Desenvolvimento de aplicações web ponta-a-ponta, com foco em arquitetura escalável e UX. Atuação no ciclo completo (SDLC) com práticas Agile/Scrum. Stack: Next.js, TypeScript, Prisma, PostgreSQL e Docker. Testes com Cypress (E2E) e Postman; CI/CD com GitHub Actions; configuração de domínio e hospedagem."
     },
     "project1": {
