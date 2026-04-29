@@ -72,7 +72,7 @@ export function Header() {
                     {/* Dark Mode Toggle */}
                     <button
                         onClick={toggleDarkMode}
-                        className="p-2 rounded-md text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors hover:cursor-pointer"
+                        className="p-2 rounded-[2px] text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors hover:cursor-pointer"
                         aria-label="Toggle dark mode"
                     >
                         {darkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -83,7 +83,7 @@ export function Header() {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="md:hidden p-2 rounded-md text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors"
+                        className="md:hidden p-2 rounded-[2px] text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors"
                         aria-label="Toggle menu"
                     >
                         {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -99,7 +99,7 @@ export function Header() {
                             <Link 
                                 href="/#about" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
+                                className="block px-3 py-2 rounded-[2px] text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('about')}
                             </Link>
                         </li>
@@ -107,7 +107,7 @@ export function Header() {
                             <Link 
                                 href="/#experience" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
+                                className="block px-3 py-2 rounded-[2px] text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('experience')}
                             </Link>
                         </li>
@@ -115,7 +115,7 @@ export function Header() {
                             <Link 
                                 href="/#projects" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
+                                className="block px-3 py-2 rounded-[2px] text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('projects')}
                             </Link>
                         </li>
@@ -123,7 +123,7 @@ export function Header() {
                             <Link 
                                 href="/#skills" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
+                                className="block px-3 py-2 rounded-[2px] text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('skills')}
                             </Link>
                         </li>
@@ -131,7 +131,7 @@ export function Header() {
                             <Link 
                                 href="/#education" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
+                                className="block px-3 py-2 rounded-[2px] text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('education')}
                             </Link>
                         </li>
@@ -139,14 +139,14 @@ export function Header() {
                             <Link 
                                 href="/#contact" 
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 rounded-md text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
+                                className="block px-3 py-2 rounded-[2px] text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors">
                                 {t('contact')}
                             </Link>
                         </li>
                         <li>
                             <span
                                 aria-disabled="true"
-                                className="block px-3 py-2 rounded-md text-slate-400 dark:text-zinc-500 cursor-not-allowed transition-colors"
+                                className="block px-3 py-2 rounded-[2px] text-slate-400 dark:text-zinc-500 cursor-not-allowed transition-colors"
                             >
                                 {t('blog')}
                             </span>

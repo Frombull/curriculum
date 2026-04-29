@@ -35,7 +35,7 @@ export function LanguageSwitcher() {
     <div className="relative inline-block text-left z-50">
       <button
         onClick={() => setOpen(prev => !prev)}
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 dark:text-zinc-200 bg-white dark:bg-zinc-950 hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-md transition-colors cursor-pointer shadow-sm border border-slate-200/70 dark:border-zinc-800"
+        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 dark:text-zinc-200 bg-white dark:bg-zinc-950 hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-[2px] transition-colors cursor-pointer shadow-sm border border-slate-200/70 dark:border-zinc-800"
       >
         {current?.flag && (
           <Image
@@ -61,7 +61,7 @@ export function LanguageSwitcher() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-44 rounded-md shadow-lg bg-white dark:bg-zinc-950 ring-1 ring-black/5 border border-slate-200/70 dark:border-zinc-800">
+        <div className="absolute right-0 mt-2 w-44 rounded-[2px] shadow-lg bg-white dark:bg-zinc-950 ring-1 ring-black/5 border border-slate-200/70 dark:border-zinc-800">
           <div className="py-1">
             {locales.map(({ code, label, flag }) => (
               <button

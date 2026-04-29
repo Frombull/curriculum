@@ -11,7 +11,7 @@ const IconText = ({ icon, children, className = "text-gray-600 dark:text-gray-40
 );
 
 const SectionCard = ({ title, icon, children, id }) => (
-  <div id={id} className="bg-white dark:bg-zinc-900 mb-4 rounded-md border border-slate-200/70 dark:border-zinc-800 shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 animate-fade-in-up">
+  <div id={id} className="bg-white dark:bg-zinc-900 mb-4 rounded-[2px] border border-slate-200/70 dark:border-zinc-800 shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 animate-fade-in-up">
     <div className="p-6">
       <div className="flex items-center gap-3 mb-6">
         {icon}
@@ -404,7 +404,7 @@ export default function Home() {
             </SectionCard>
 
             {/* --- View Resume --- */}
-            <div id="contact" className="bg-white dark:bg-zinc-900 p-6 rounded-md border border-slate-200/70 dark:border-zinc-800 shadow-sm animate-fade-in-up">
+            <div id="contact" className="bg-white dark:bg-zinc-900 p-6 rounded-sm border border-slate-200/70 dark:border-zinc-800 shadow-sm animate-fade-in-up">
               <h4 className="font-semibold text-slate-900 dark:text-zinc-50 mb-4 flex items-center gap-2">
                 <FileText className="text-indigo-600 dark:text-indigo-400" size={20} />
                 {t('contactSection.downloadTitle')}
@@ -413,7 +413,7 @@ export default function Home() {
                 {t('contactSection.downloadDescription')}
               </p>
               <a href="/CV_Marco_Di_Toro.pdf" target="_blank" rel="noopener noreferrer" className="w-full">
-                <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer">
+                <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-[2px] transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer">
                   <ExternalLink size={18} />
                   {t('contactSection.downloadButton')}
                 </button>
