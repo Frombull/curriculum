@@ -40,7 +40,7 @@ export function Header() {
 
     return(
         <header className="fixed top-0 w-full z-50 bg-white/90 dark:bg-zinc-950/80 backdrop-blur-md border-b border-slate-200/70 dark:border-zinc-800 transition-all duration-300">
-            <div className="flex items-center justify-between w-full mx-auto max-w-7xl px-4 md:px-6 py-4">
+            <div className="flex items-center justify-between w-full mx-auto max-w-7xl px-4 md:px-6 py-3">
                 {/* Logo */}
                 <Link href="/" className="text-xl font-bold text-slate-900 dark:text-zinc-200 tracking-tight hover:text-slate-950 dark:hover:text-white transition-colors">
                     Marco Di Toro
