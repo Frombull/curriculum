@@ -1,4 +1,4 @@
-import { Mail, Phone, Linkedin, Briefcase, Code, GraduationCap, Star, User, Download, Github, ExternalLink, Award, FileText } from 'lucide-react';
+import { Mail, Linkedin, Briefcase, Code, GraduationCap, Star, User, Github, ExternalLink, Award, FileText } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Footer } from '@/components/Footer/Footer';

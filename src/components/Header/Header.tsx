@@ -1,13 +1,12 @@
 'use client';
 
-import { usePathname, Link } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher/LanguageSwitcher";
 import { useTranslations } from 'next-intl';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export function Header() {
-    const pathname = usePathname();
     const t = useTranslations('Header');
     const [darkMode, setDarkMode] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
