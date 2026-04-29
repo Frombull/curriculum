@@ -4,7 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher/LanguageSwitcher";
 import { useTranslations } from 'next-intl';
 import { Moon, Sun, Menu, X } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { DM_Mono } from 'next/font/google';
 
 const dmMono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
@@ -13,16 +13,15 @@ export function Header() {
     const t = useTranslations('Header');
     const [darkMode, setDarkMode] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState('');
     const headerRef = useRef<HTMLElement>(null);
 
-    const navLinks = [
+    const navLinks = useMemo(() => [
         { href: '#about',      label: t('about') },
         { href: '#experience', label: t('experience') },
         { href: '#projects',   label: t('projects') },
         { href: '#skills',     label: t('skills') },
         { href: '#education',  label: t('education') },
-    ];
+    ], [t]);
 
     // Theme
     useEffect(() => {
@@ -40,21 +39,20 @@ export function Header() {
     // Header entrance animation
     useEffect(() => {
         const loadAnime = async () => {
-            const anime = (await import('animejs')).default;
-            anime({
-                targets: headerRef.current,
+            const { animate, stagger } = await import('animejs');
+            if (!headerRef.current) return;
+            animate(headerRef.current, {
                 opacity: [0, 1],
                 translateY: [-12, 0],
                 duration: 600,
                 easing: 'easeOutExpo',
             });
-            anime({
-                targets: '.header-item',
+            animate('.header-item', {
                 opacity: [0, 1],
                 translateY: [-8, 0],
                 duration: 500,
                 easing: 'easeOutExpo',
-                delay: anime.stagger(60, { start: 150 }),
+                delay: stagger(60, { start: 150 }),
             });
         };
         loadAnime();
@@ -64,18 +62,18 @@ export function Header() {
     useEffect(() => {
         if (!mobileMenuOpen) return;
         const loadAnime = async () => {
-            const anime = (await import('animejs')).default;
-            anime({
-                targets: '.mobile-nav-item',
+            const { animate, stagger } = await import('animejs');
+            animate('.mobile-nav-item', {
                 opacity: [0, 1],
                 translateX: [-10, 0],
                 duration: 300,
                 easing: 'easeOutExpo',
-                delay: anime.stagger(40),
+                delay: stagger(40),
             });
         };
         loadAnime();
     }, [mobileMenuOpen]);
+
 
     const toggleDarkMode = () => {
         const newDarkMode = !darkMode;
@@ -108,28 +106,16 @@ export function Header() {
                 {/* Desktop Navigation — anchor links */}
                 <nav className="hidden md:block">
                     <ul className="flex items-center gap-1">
-                        {navLinks.map(({ href, label }) => {
-                            const id = href.replace('#', '');
-                            const isActive = activeSection === id;
-                            return (
-                                <li key={href} className="header-item relative" style={{ opacity: 0 }}>
-                                    <a
-                                        href={href}
-                                        className={`px-3 py-2 text-sm transition-colors block ${
-                                            isActive
-                                                ? 'text-slate-950 dark:text-white font-medium'
-                                                : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100'
-                                        }`}
-                                    >
-                                        {label}
-                                    </a>
-                                    {/* Active indicator dot */}
-                                    {isActive && (
-                                        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-slate-900 dark:bg-zinc-100" />
-                                    )}
-                                </li>
-                            );
-                        })}
+                        {navLinks.map(({ href, label }) => (
+                            <li key={href} className="header-item" style={{ opacity: 0 }}>
+                                <a
+                                    href={href}
+                                    className="px-3 py-2 text-sm transition-colors block text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100"
+                                >
+                                    {label}
+                                </a>
+                            </li>
+                        ))}
                     </ul>
                 </nav>
 

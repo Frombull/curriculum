@@ -10,36 +10,33 @@ import { useEffect, useRef } from 'react';
 function useScrollReveal() {
   useEffect(() => {
     const loadAnime = async () => {
-      const anime = (await import('animejs')).default;
+      const { animate, stagger } = await import('animejs');
 
       // Header animation on mount
-      anime({
-        targets: '.animate-header',
+      animate('.animate-header', {
         opacity: [0, 1],
         translateY: [-24, 0],
         duration: 900,
         easing: 'easeOutExpo',
-        delay: anime.stagger(120),
+        delay: stagger(120),
       });
 
       // Staggered card entrance
-      anime({
-        targets: '.animate-card',
+      animate('.animate-card', {
         opacity: [0, 1],
         translateY: [32, 0],
         duration: 800,
         easing: 'easeOutExpo',
-        delay: anime.stagger(100, { start: 300 }),
+        delay: stagger(100, { start: 300 }),
       });
 
       // Skill badges pop-in
-      anime({
-        targets: '.skill-badge',
+      animate('.skill-badge', {
         opacity: [0, 1],
         scale: [0.85, 1],
         duration: 400,
         easing: 'easeOutBack',
-        delay: anime.stagger(40, { start: 700 }),
+        delay: stagger(40, { start: 700 }),
       });
 
       // Scroll reveal observer
@@ -47,8 +44,7 @@ function useScrollReveal() {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              anime({
-                targets: entry.target,
+              animate(entry.target, {
                 opacity: [0, 1],
                 translateY: [24, 0],
                 duration: 700,
@@ -69,39 +65,6 @@ function useScrollReveal() {
 
     loadAnime();
   }, []);
-}
-
-// ─── Hover magnetic effect for interactive cards ───────────────────────────────
-function useMagneticHover(ref: React.RefObject<HTMLElement | null>, strength = 0.25) {
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const handleMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect();
-      const x = (e.clientX - rect.left - rect.width / 2) * strength;
-      const y = (e.clientY - rect.top - rect.height / 2) * strength;
-      el.style.transform = `translate(${x}px, ${y}px)`;
-    };
-
-    const handleLeave = () => {
-      el.style.transform = 'translate(0,0)';
-      el.style.transition = 'transform 0.5s cubic-bezier(0.23,1,0.32,1)';
-    };
-
-    const handleEnter = () => {
-      el.style.transition = 'transform 0.15s ease-out';
-    };
-
-    el.addEventListener('mousemove', handleMove);
-    el.addEventListener('mouseleave', handleLeave);
-    el.addEventListener('mouseenter', handleEnter);
-    return () => {
-      el.removeEventListener('mousemove', handleMove);
-      el.removeEventListener('mouseleave', handleLeave);
-      el.removeEventListener('mouseenter', handleEnter);
-    };
-  }, [ref, strength]);
 }
 
 // ─── Components ────────────────────────────────────────────────────────────────
@@ -163,9 +126,11 @@ const ProjectCard = ({ title, description, logo, githubUrl, demoUrl }) => {
   return (
     <div ref={cardRef} className="flex items-start gap-4 p-3 rounded-sm hover:bg-slate-50 dark:hover:bg-zinc-800/50 group cursor-default" style={{ willChange: 'transform' }}>
       {logo && (
-        <img
+        <Image
           src={logo}
           alt={`${title} logo`}
+          width={56}
+          height={56}
           className="w-14 h-14 rounded object-contain bg-white shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform duration-300"
         />
       )}
@@ -206,9 +171,11 @@ const ExperienceCard = ({ role, company, duration, description, logo }: {
 }) => (
   <div className="flex items-start gap-4 p-3 rounded-sm hover:bg-slate-50 dark:hover:bg-zinc-800/40 group transition-colors duration-200">
     {logo ? (
-      <img
+      <Image
         src={logo}
         alt={`${company} logo`}
+        width={56}
+        height={56}
         className="w-14 h-14 rounded object-contain bg-white p-1 shadow-sm flex-shrink-0 group-hover:shadow-md transition-shadow duration-200"
       />
     ) : (
@@ -251,16 +218,15 @@ const AnimatedName = ({ text }: { text: string }) => {
 
   useEffect(() => {
     const loadAnime = async () => {
-      const anime = (await import('animejs')).default;
+      const { animate, stagger } = await import('animejs');
       if (!ref.current) return;
       const chars = ref.current.querySelectorAll('.char');
-      anime({
-        targets: chars,
+      animate(chars, {
         opacity: [0, 1],
         translateY: [20, 0],
         duration: 600,
         easing: 'easeOutExpo',
-        delay: anime.stagger(30),
+        delay: stagger(30),
       });
     };
     loadAnime();
@@ -419,7 +385,7 @@ export default function Home() {
                   <div key={cert}>
                     {i > 0 && <div className="border-t border-slate-200 dark:border-zinc-800 my-4" />}
                     <div className="flex items-start gap-3">
-                      <img src="/logos/MICROSOFT_LOGO.png" alt="Microsoft" className="w-10 h-10 rounded object-contain bg-white p-0.5 shadow-sm flex-shrink-0" />
+                      <Image src="/logos/MICROSOFT_LOGO.png" alt="Microsoft" width={40} height={40} className="w-10 h-10 rounded object-contain bg-white p-0.5 shadow-sm flex-shrink-0" />
                       <div>
                         {url?.length > 0 ? (
                           <a href={url} target="_blank" rel="noopener noreferrer">
@@ -457,7 +423,7 @@ export default function Home() {
               <div className="flex justify-center p-2 rounded-lg">
                 <a href="https://linkedin.com/in/marcoditoro" target="_blank" rel="noopener noreferrer" title={t('linkedinQRCodeTitle')}
                   className="hover:scale-105 transition-transform duration-300 block">
-                  <img src="/qrcode/qr-code.svg" alt={t('linkedinQRCodeAlt')} className="rounded shadow-sm w-36 h-36" />
+                  <Image src="/qrcode/qr-code.svg" alt={t('linkedinQRCodeAlt')} width={144} height={144} className="rounded shadow-sm w-36 h-36" />
                 </a>
               </div>
             </SectionCard>
