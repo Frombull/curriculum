@@ -8,6 +8,7 @@ import Providers from '@/components/Providers';
 import { getMessages } from 'next-intl/server';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://marcoditoro.com.br'),
   title: 'Marco Di Toro | Currículo',
   description: 'Técnico em Telecomunicações, Engenheiro de Software, desenvolvedor.',
   keywords: 'Marco Di Toro, Engenheiro de Software, Desenvolvedor Full-Stack, C#, Python, React, AWS, Inatel, WatchGuard Technologies',
@@ -25,12 +26,18 @@ export const metadata: Metadata = {
     siteName: 'Marco Di Toro',
     images: [
       {
-        url: '/profile_picture.jpg',
+        url: '/og',
         width: 1200,
         height: 630,
         alt: 'Marco Di Toro',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Marco Di Toro',
+    description: 'Currículo profissional de Marco Di Toro.',
+    images: ['/og'],
   },
   verification: {
     google: '----------',
