@@ -6,33 +6,39 @@ export default function PrivacyPolicyPage() {
   const t = useTranslations('PrivacyPolicy');
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 min-h-screen font-sans">
-      <main className="container mx-auto p-4 pt-24 md:pt-24 md:px-8">
-        <div className="bg-white dark:bg-gray-800/50 p-8 rounded-xl shadow-md">
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-6">{t('title')}</h1>
+    <div className="relative bg-slate-50 dark:bg-zinc-950 min-h-screen font-sans pt-20">
+      <div
+        className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-[0.15] dark:opacity-[0.3] mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+        }}
+      ></div>
+      <main className="relative z-10 container mx-auto p-4 md:px-8">
+        <div className="bg-white dark:bg-zinc-900 p-8 rounded-[2px] border border-slate-200/70 dark:border-zinc-800 shadow-sm">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-zinc-50 mb-6">{t('title')}</h1>
           
-          <div className="space-y-4 text-gray-700 dark:text-gray-300">
+          <div className="space-y-4 text-slate-700 dark:text-zinc-300">
             <p>{t('introduction')}</p>
             
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white pt-4">{t('informationWeCollect.title')}</h2>
+            <h2 className="text-2xl font-semibold text-slate-900 dark:text-zinc-50 pt-4">{t('informationWeCollect.title')}</h2>
             <p>{t('informationWeCollect.p1')}</p>
             
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white pt-4">{t('howWeUseYourInformation.title')}</h2>
+            <h2 className="text-2xl font-semibold text-slate-900 dark:text-zinc-50 pt-4">{t('howWeUseYourInformation.title')}</h2>
             <p>{t('howWeUseYourInformation.p1')}</p>
             
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white pt-4">{t('cookies.title')}</h2>
+            <h2 className="text-2xl font-semibold text-slate-900 dark:text-zinc-50 pt-4">{t('cookies.title')}</h2>
             <p>{t('cookies.p1')}</p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white pt-4">{t('thirdPartyServices.title')}</h2>
+            <h2 className="text-2xl font-semibold text-slate-900 dark:text-zinc-50 pt-4">{t('thirdPartyServices.title')}</h2>
             <p>{t('thirdPartyServices.p1')}</p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white pt-4">{t('security.title')}</h2>
+            <h2 className="text-2xl font-semibold text-slate-900 dark:text-zinc-50 pt-4">{t('security.title')}</h2>
             <p>{t('security.p1')}</p>
             
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white pt-4">{t('changesToThisPolicy.title')}</h2>
+            <h2 className="text-2xl font-semibold text-slate-900 dark:text-zinc-50 pt-4">{t('changesToThisPolicy.title')}</h2>
             <p>{t('changesToThisPolicy.p1')}</p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white pt-4">{t('contactUs.title')}</h2>
+            <h2 className="text-2xl font-semibold text-slate-900 dark:text-zinc-50 pt-4">{t('contactUs.title')}</h2>
             <p>{t('contactUs.p1')}</p>
           </div>
         </div>
