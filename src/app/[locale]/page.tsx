@@ -102,8 +102,16 @@ export default function Home() {
   const t = useTranslations('HomePage');
 
   return (
-    <div className="bg-slate-50 dark:bg-zinc-950 min-h-screen font-sans pt-20">
-      <div className="container mx-auto p-4 md:px-8">
+    <div className="relative bg-slate-50 dark:bg-zinc-950 min-h-screen font-sans pt-20">
+      {/* Noise Background Overlay */}
+      <div 
+        className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-[0.15] dark:opacity-[0.3] mix-blend-overlay"
+        style={{ 
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` 
+        }}
+      ></div>
+
+      <div className="relative z-10 container mx-auto p-4 md:px-8">
         {/* --- Header --- */}
         <header className="text-center mb-12 animate-fade-in">
           <div className="w-42 h-42 rounded-full mx-auto mb-4 ring-1 ring-slate-200 dark:ring-zinc-800 shadow-sm">
