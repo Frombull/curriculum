@@ -1,4 +1,4 @@
-import { Mail, Phone, Linkedin, Briefcase, Code, GraduationCap, Star, User, Download, Github, ExternalLink, Award } from 'lucide-react';
+import { Mail, Phone, Linkedin, Briefcase, Code, GraduationCap, Star, User, Download, Github, ExternalLink, Award, FileText } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Footer } from '@/components/Footer/Footer';
@@ -403,18 +403,18 @@ export default function Home() {
               </div>
             </SectionCard>
 
-            {/* --- Download Resume --- */}
+            {/* --- View Resume --- */}
             <div id="contact" className="bg-white dark:bg-zinc-900 p-6 rounded-md border border-slate-200/70 dark:border-zinc-800 shadow-sm animate-fade-in-up">
               <h4 className="font-semibold text-slate-900 dark:text-zinc-50 mb-4 flex items-center gap-2">
-                <Download className="text-indigo-600 dark:text-indigo-400" size={20} />
+                <FileText className="text-indigo-600 dark:text-indigo-400" size={20} />
                 {t('contactSection.downloadTitle')}
               </h4>
               <p className="text-sm text-slate-600 dark:text-zinc-300 mb-4">
                 {t('contactSection.downloadDescription')}
               </p>
-              <a href="/CV_Marco_Di_Toro.pdf" download="CV_Marco_Di_Toro.pdf" className="w-full">
+              <a href="/CV_Marco_Di_Toro.pdf" target="_blank" rel="noopener noreferrer" className="w-full">
                 <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer">
-                  <Download size={18} />
+                  <ExternalLink size={18} />
                   {t('contactSection.downloadButton')}
                 </button>
               </a>

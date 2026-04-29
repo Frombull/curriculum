@@ -103,9 +103,9 @@
       "title": "Contact",
       "subtitle": "Let's work together!",
       "description": "I am always open to new opportunities and interesting projects. Contact me through any of the channels below.",
-      "downloadTitle": "Download my resume",
-      "downloadDescription": "Download a PDF version of my resume for future reference.",
-      "downloadButton": "Download (PDF)"
+      "downloadTitle": "View my resume",
+      "downloadDescription": "View a PDF version of my resume in your browser.",
+      "downloadButton": "View CV"
     },
     "linkedinQRCodeAlt": "QR Code for LinkedIn",
     "linkedinQRCodeTitle": "Visit LinkedIn",
