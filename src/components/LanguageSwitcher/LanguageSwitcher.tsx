@@ -35,7 +35,7 @@ export function LanguageSwitcher() {
     <div className="relative inline-block text-left z-50">
       <button
         onClick={() => setOpen(prev => !prev)}
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 dark:text-zinc-200 bg-white dark:bg-zinc-950 hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-md transition-colors hover:cursor-pointer shadow-sm border border-slate-200/70 dark:border-zinc-800"
+        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 dark:text-zinc-200 bg-white dark:bg-zinc-950 hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-md transition-colors cursor-pointer shadow-sm border border-slate-200/70 dark:border-zinc-800"
       >
         {current?.flag && (
           <Image
@@ -67,7 +67,7 @@ export function LanguageSwitcher() {
               <button
                 key={code}
                 onClick={() => handleChangeLocale(code)}
-                className={`flex items-center gap-2 px-4 py-2 w-full text-left text-sm ${
+                className={`flex items-center gap-2 px-4 py-2 w-full text-left text-sm cursor-pointer ${
                   code === locale
                     ? 'bg-indigo-50 dark:bg-indigo-950/40 font-semibold text-indigo-900 dark:text-indigo-200'
                     : 'text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-900'
