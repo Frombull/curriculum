@@ -11,7 +11,7 @@
   },
   "HomePage": {
     "title": "Marco Di Toro",
-    "subtitle": "Desenvolvedor Full-Stack | .NET & React | 3+ anos de experiência",
+    "subtitle": "Desenvolvedor Full-Stack | .NET & React | 3~ anos de experiência",
     "subtitle2": "Engenheiro de Software | Técnico em Telecomunicações",
     "profilePictureAlt": "Foto de Perfil",
     "aboutMe": "Sobre Mim",
@@ -45,7 +45,7 @@
     },
     "project1": {
       "title": "Pixelforge",
-      "description": "Plataforma web desenvolvida com Next.js e p5.js para auxiliar professores da faculdade de engenharia na demonstração de conceitos práticos em sala de aula, como algoritmos de busca (A*), flocking, computação gráfica, multimídia (FFT) e transformações matriciais. O projeto conquistou o 1º lugar na feira de ciências FETIN e evoluiu para o Trabalho de Conclusão de Curso (TCC)."
+      "description": "Plataforma web desenvolvida com WebGL, Threejs, Next.js e p5.js para auxiliar professores da faculdade de engenharia na demonstração de conceitos práticos em sala de aula, como algoritmos de computação gráfica, multimídia (FFT) e transformações matriciais. O projeto conquistou o 1º lugar na feira de ciências FETIN e está evoluindo para meu Trabalho de Conclusão de Curso."
     },
     "project2": {
       "title": "PROJETE VRTL 2020: Quality control with machine learning",
