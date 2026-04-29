@@ -64,7 +64,13 @@ const ProjectCard = ({ title, description, logo, githubUrl, demoUrl }) => {
 
 const ExperienceCard = ({ role, company, duration, description, logo }: { role: string; company: string; duration: string; description: string; logo?: string }) => (
   <div className="flex items-start gap-4 p-2">
-    {logo && <img src={logo} alt={`${company} logo`} className="w-14 h-14 rounded object-contain bg-white p-1 shadow-sm" />}
+    {logo ? (
+      <img src={logo} alt={`${company} logo`} className="w-14 h-14 rounded object-contain bg-white p-1 shadow-sm flex-shrink-0" />
+    ) : (
+      <div className="w-14 h-14 rounded bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 flex items-center justify-center flex-shrink-0 shadow-sm text-slate-400 dark:text-zinc-500">
+        <Briefcase size={24} />
+      </div>
+    )}
     <div className="flex-1">
       <h3 className="font-bold text-md text-indigo-700 dark:text-indigo-300">{role}</h3>
       <p className="font-semibold text-slate-800 dark:text-zinc-200">{company}</p>
@@ -180,19 +186,19 @@ export default function Home() {
             {/* --- Projects --- */}
             <SectionCard title={t('projects')} icon={<Code className="text-indigo-600 dark:text-indigo-400" />} id="projects">
               <ProjectCard
-                title={t('project5.title')}
-                description={t('project5.description')}
-                logo="/logos/GROOVETREE_LOGO.jpg"
-                githubUrl="https://github.com/Frombull/Groovetree"
-                demoUrl="https://groovetr.ee"
-              />
-              <div className="border-t border-slate-200 dark:border-zinc-800 my-4"></div>
-              <ProjectCard
                 title={t('project1.title')}
                 description={t('project1.description')}
                 logo="/logos/PIXELFORGE_LOGO.jpg"
                 githubUrl="https://github.com/Frombull/PixelForge"
                 demoUrl="https://pixelforge3d.com.br"
+              />
+              <div className="border-t border-slate-200 dark:border-zinc-800 my-4"></div>
+              <ProjectCard
+                title={t('project5.title')}
+                description={t('project5.description')}
+                logo="/logos/GROOVETREE_LOGO.jpg"
+                githubUrl="https://github.com/Frombull/Groovetree"
+                demoUrl="https://groovetr.ee"
               />
               <div className="border-t border-slate-200 dark:border-zinc-800 my-4"></div>
               <ProjectCard
