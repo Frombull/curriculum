@@ -34,7 +34,7 @@
     "experience2": {
       "role": "Intern",
       "company": "WatchGuard Technologies",
-      "duration": "09/2021 - 06/2022 (8 months)",
+      "duration": "09/2021 - 06/2022",
       "description": "Worked with AWS microservices and Python, implementing solutions with Lambda, SNS, SQS, S3, Cloudfront, among others. Acquired knowledge about agile methodologies (Scrum) while participating in an international team. Gained extensive hands-on experience, providing me with a solid understanding of software development in an agile professional environment."
     },
     "experience3": {
@@ -45,7 +45,7 @@
     },
     "project1": {
       "title": "Pixelforge",
-      "description": "Web platform developed with WebGL, Threejs, Next.js and p5.js to help engineering college professors in the demonstration of practical concepts in the classroom, like computer graphics algorithms, multimedia (FFT) and matrix transformations. The project won 1st place at the FETIN science fair and is evolving into my Capstone Project."
+      "description": "Web platform developed with WebGL, Three.js, Next.js and p5.js to help engineering college professors in the demonstration of practical concepts in the classroom, like computer graphics algorithms, multimedia (FFT) and matrix transformations. The project won 1st place at the FETIN science fair and is evolving into my Capstone Project."
     },
     "project2": {
       "title": "PROJETE VRTL 2020: Quality control with machine learning",
@@ -56,7 +56,7 @@
       "description": "2nd year technical project. A mat was made capable of identifying the user's type of step and suggesting possible corrections for it."
     },
     "project4": {
-      "title": "PROJETE 2018: Automatic gate with wi-fi",
+      "title": "PROJETE 2018: Automatic gate with Wi-Fi",
       "description": "1st year technical project. Garage door, capable of automatically opening and closing when detecting the user's presence on their local wi-fi network."
     },
     "project5": {
@@ -74,7 +74,7 @@
     "education1": {
       "degree": "Software Engineering",
       "institution": "Instituto Nacional de Telecomunicações - Inatel",
-      "period": "01/2021 – Cuhttps://www.freecodecamp.org/certification/marcoditoro/foundational-c-sharp-with-microsoftrrent"
+      "period": "01/2021 – Current"
     },
     "education2": {
       "degree": "Telecommunications Technician",

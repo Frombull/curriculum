@@ -45,7 +45,7 @@
     },
     "project1": {
       "title": "Pixelforge",
-      "description": "Plataforma web desenvolvida com WebGL, Threejs, Next.js e p5.js para auxiliar professores da faculdade de engenharia na demonstração de conceitos práticos em sala de aula, como algoritmos de computação gráfica, multimídia (FFT) e transformações matriciais. O projeto conquistou o 1º lugar na feira de ciências FETIN e está evoluindo para meu Trabalho de Conclusão de Curso."
+      "description": "Plataforma web desenvolvida com WebGL, Three.js, Next.js e p5.js para auxiliar professores da faculdade de engenharia na demonstração de conceitos práticos em sala de aula, como algoritmos de computação gráfica, multimídia (FFT) e transformações matriciais. O projeto conquistou o 1º lugar na feira de ciências FETIN e está evoluindo para meu Trabalho de Conclusão de Curso."
     },
     "project2": {
       "title": "PROJETE VRTL 2020: Quality control with machine learning",
@@ -56,7 +56,7 @@
       "description": "Projeto do 2.º ano técnico. Foi confeccionado um tapete capaz de identificar qual o tipo de pisada do usuário e de sugerir uma possível correção para a mesma."
     },
     "project4": {
-      "title": "PROJETE 2018: Portão automático com wi-fi",
+      "title": "PROJETE 2018: Portão automático com Wi-Fi",
       "description": "Projeto do 1.º ano técnico. Portão de garagem, capaz de abrir e fechar automaticamente ao detectar a presença do usuário em sua rede wi-fi local."
     },
     "project5": {
