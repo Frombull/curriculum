@@ -86,7 +86,7 @@
       "issuer": "Microsoft",
       "date": "Fevereiro 2026",
       "credentialId": "",
-      "credentialUrl": ""
+      "credentialUrl": "https://www.freecodecamp.org/certification/marcoditoro/foundational-c-sharp-with-microsoft"
     },
     "certificate2": {
       "title": "Microsoft Azure Fundamentals (AZ-900)",
