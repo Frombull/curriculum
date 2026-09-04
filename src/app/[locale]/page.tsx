@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  ArrowDown,
   ArrowUpRight,
   Briefcase,
   ExternalLink,
@@ -10,9 +9,10 @@ import {
   Linkedin,
   Mail,
 } from 'lucide-react';
+import { motion, useInView, useReducedMotion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Footer } from '@/components/Footer/Footer';
 
 type TimelineSectionProps = {
@@ -40,134 +40,95 @@ type ProjectItemProps = {
 
 type SkillCategory = 'frontend' | 'backend' | 'qa' | 'devops' | 'default';
 
-function useTimelineMotion() {
+function useTimelineProgress() {
+  const [progressHeight, setProgressHeight] = useState(0);
+
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
+    const timeline = document.querySelector<HTMLElement>('.timeline-flow');
+    let frame = 0;
 
-    let mounted = true;
-    let observer: IntersectionObserver | undefined;
-    let updateProgress: (() => void) | undefined;
-
-    document.documentElement.classList.add('motion-enabled');
-
-    const revealWithoutMotion = () => {
-      document.documentElement.classList.remove('motion-enabled');
-      document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((section) => {
-        section.classList.add('is-visible');
-        section.querySelectorAll<HTMLElement>('.stagger-item').forEach((item) => {
-          item.style.removeProperty('opacity');
-          item.style.removeProperty('transform');
-        });
+    const updateProgress = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        if (!timeline) return;
+        const rect = timeline.getBoundingClientRect();
+        const cursor = window.innerHeight * 0.58;
+        const travelled = Math.min(Math.max(cursor - rect.top, 0), rect.height);
+        setProgressHeight(travelled);
       });
     };
 
-    const loadMotion = async () => {
-      try {
-        const { animate, stagger } = await import('animejs');
-        if (!mounted) return;
-
-        animate('.hero-reveal', {
-          opacity: [0, 1],
-          translateY: [24, 0],
-          duration: 900,
-          ease: 'outExpo',
-          delay: stagger(90, { start: 80 }),
-        });
-
-        observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-
-              const section = entry.target as HTMLElement;
-              const content = section.querySelector('.timeline-content');
-              const side = section.dataset.side;
-
-              section.classList.add('is-visible');
-
-              if (content) {
-                animate(content, {
-                  opacity: [0, 1],
-                  translateX: [side === 'right' ? 28 : -28, 0],
-                  translateY: [18, 0],
-                  duration: 850,
-                  ease: 'outExpo',
-                });
-              }
-
-              const details = section.querySelectorAll('.stagger-item');
-              if (details.length) {
-                animate(details, {
-                  opacity: [0, 1],
-                  translateY: [14, 0],
-                  duration: 600,
-                  ease: 'outExpo',
-                  delay: stagger(55, { start: 170 }),
-                });
-              }
-
-              observer?.unobserve(section);
-            });
-          },
-          { threshold: 0.08, rootMargin: '0px 0px -8% 0px' },
-        );
-
-        document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((section) => {
-          section.querySelectorAll<HTMLElement>('.stagger-item').forEach((item) => {
-            item.style.opacity = '0';
-          });
-          observer?.observe(section);
-        });
-
-        const timeline = document.querySelector<HTMLElement>('.timeline-flow');
-        const progress = document.querySelector<HTMLElement>('.timeline-progress');
-        let frame = 0;
-
-        updateProgress = () => {
-          cancelAnimationFrame(frame);
-          frame = requestAnimationFrame(() => {
-            if (!timeline || !progress) return;
-            const rect = timeline.getBoundingClientRect();
-            const cursor = window.innerHeight * 0.58;
-            const travelled = Math.min(Math.max(cursor - rect.top, 0), rect.height);
-            progress.style.height = `${travelled}px`;
-          });
-        };
-
-        updateProgress();
-        window.addEventListener('scroll', updateProgress, { passive: true });
-        window.addEventListener('resize', updateProgress);
-      } catch {
-        if (mounted) revealWithoutMotion();
-      }
-    };
-
-    loadMotion();
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
 
     return () => {
-      mounted = false;
-      observer?.disconnect();
-      if (updateProgress) {
-        window.removeEventListener('scroll', updateProgress);
-        window.removeEventListener('resize', updateProgress);
-      }
-      document.documentElement.classList.remove('motion-enabled');
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', updateProgress);
+      window.removeEventListener('resize', updateProgress);
     };
   }, []);
+
+  return progressHeight;
 }
 
-const TimelineSection = ({ title, children, id, side = 'left' }: TimelineSectionProps) => (
-  <section id={id} className="timeline-section" data-side={side} data-reveal>
-    <span className="timeline-marker" aria-hidden="true" />
-    <div className="timeline-content">
+const TimelineSection = ({ title, children, id, side = 'left' }: TimelineSectionProps) => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '0px 0px -12% 0px' });
+  const reduceMotion = useReducedMotion();
+  const isVisible = Boolean(reduceMotion || isInView);
+
+  return (
+  <motion.section
+    ref={sectionRef}
+    id={id}
+    className="relative grid grid-cols-[62fr_38fr] py-12 max-[900px]:block max-[900px]:py-11 max-[900px]:pl-[3.25rem]"
+    data-side={side}
+    initial="hidden"
+    animate={isVisible ? 'visible' : 'hidden'}
+    variants={{
+      hidden: { opacity: 0 },
+      visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
+    }}
+  >
+    <motion.span
+      className="absolute left-[62%] top-[3.7rem] z-20 flex h-[18px] w-[18px] -translate-x-1/2 items-center justify-center rounded-full border bg-[var(--background)] max-[900px]:left-5 max-[900px]:top-[3.45rem]"
+      initial={{ opacity: 0, scale: 0.45 }}
+      animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0.55, scale: 0.72 }}
+      transition={{ type: 'spring', stiffness: 280, damping: 18, delay: 0.08 }}
+      style={{ borderColor: isVisible ? 'rgb(99 102 241)' : undefined, boxShadow: isVisible ? '0 0 0 6px rgb(99 102 241 / 0.12), 0 0 28px rgb(99 102 241 / 0.35)' : undefined }}
+      aria-hidden="true"
+    >
+      <motion.span
+        className="h-1.5 w-1.5 rounded-full bg-indigo-500"
+        initial={{ scale: 0 }}
+        animate={isVisible ? { scale: 1.25 } : { scale: 0 }}
+        transition={{ type: 'spring', stiffness: 360, damping: 16, delay: 0.18 }}
+      />
+      {isVisible && (
+        <motion.span
+          className="absolute inset-[-7px] rounded-full border border-indigo-400/60"
+          initial={{ opacity: 0.8, scale: 0.8 }}
+          animate={reduceMotion ? { opacity: 0, scale: 1 } : { opacity: [0.8, 0], scale: [0.8, 2.3] }}
+          transition={reduceMotion ? { duration: 0.01 } : { duration: 1.8, repeat: Infinity, repeatDelay: 1.4, ease: 'easeOut' }}
+        />
+      )}
+    </motion.span>
+    <motion.div
+      className={`${side === 'right' ? 'col-start-2 pl-[clamp(2.5rem,4.5vw,4.5rem)]' : 'col-start-1 pr-[clamp(2.5rem,5vw,5rem)]'} max-[900px]:col-start-1 max-[900px]:p-0`}
+      variants={{
+        hidden: { opacity: 0, x: side === 'right' ? 28 : -28, y: 12 },
+        visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] } },
+      }}
+    >
       <h2 className="mb-6 max-w-xl text-2xl font-semibold tracking-[-0.04em] text-slate-950 md:text-3xl dark:text-white">
         {title}
       </h2>
       <div className="space-y-5 text-[1rem] leading-7 text-slate-600 dark:text-zinc-400">{children}</div>
-    </div>
-  </section>
-);
+    </motion.div>
+  </motion.section>
+  );
+};
 
 const ExperienceItem = ({ role, company, duration, description, logo }: ExperienceItemProps) => (
   <article className="stagger-item group grid grid-cols-[2.75rem_1fr] gap-4 border-b border-slate-300/70 py-5 first:pt-0 last:border-0 last:pb-0 dark:border-white/10">
@@ -250,7 +211,7 @@ const Skill = ({ children, category }: { children: ReactNode; category: SkillCat
 
 export default function Home() {
   const t = useTranslations('HomePage');
-  useTimelineMotion();
+  const progressHeight = useTimelineProgress();
 
   const skillGroups: Array<{ key: string; color: string; items: Array<[string, SkillCategory]> }> = [
     { key: 'frontend', color: 'bg-indigo-500', items: [['React', 'frontend'], ['Next.js', 'frontend'], ['TypeScript', 'frontend'], ['Tailwind CSS', 'frontend'], ['JavaScript', 'frontend'], ['Blazor', 'frontend']] },
@@ -262,13 +223,25 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <div className="portfolio-grid pointer-events-none fixed inset-0 opacity-55 dark:opacity-25" aria-hidden="true" />
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(99,102,241,0.10),transparent_28rem)] dark:bg-[radial-gradient(circle_at_12%_0%,rgba(129,140,248,0.12),transparent_28rem)]" aria-hidden="true" />
       <div className="pointer-events-none fixed left-[12%] top-[-16rem] h-[32rem] w-[32rem] rounded-full bg-indigo-400/10 blur-[110px] dark:bg-indigo-500/10" aria-hidden="true" />
 
       <main className="relative z-10 mx-auto max-w-[1180px] px-5 md:px-8">
         <section className="flex items-center py-20 md:py-24" aria-labelledby="hero-title">
-          <div className="grid w-full items-center gap-9 md:grid-cols-[11rem_1fr] md:gap-12 lg:gap-16">
-            <div className="hero-reveal relative mx-auto md:mx-0">
+          <motion.div
+            className="grid w-full items-center gap-9 md:grid-cols-[11rem_1fr] md:gap-12 lg:gap-16"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.1, delayChildren: 0.08 } },
+            }}
+          >
+            <motion.div
+              className="relative mx-auto md:mx-0"
+              variants={{ hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.75, ease: 'easeOut' }}
+            >
               <span className="absolute -left-5 -top-5 h-16 w-16 border-l border-t border-indigo-400/70 dark:border-indigo-500/50" aria-hidden="true" />
               <div className="h-44 w-36 overflow-hidden rounded-[4.5rem_4.5rem_1rem_1rem] border border-slate-300/80 shadow-[0_20px_48px_-28px_rgba(15,23,42,0.55)] dark:border-white/15 dark:shadow-[0_20px_56px_-26px_rgba(0,0,0,0.9)]">
                 <Image src="/profile_picture.jpg" alt={t('profilePictureAlt')} width={384} height={480} priority className="h-full w-full object-cover grayscale-[15%]" />
@@ -276,32 +249,36 @@ export default function Home() {
               <span className="absolute -bottom-4 -right-5 rounded-full border border-slate-300 bg-[var(--background)] px-3 py-1 font-mono text-[10px] tracking-[0.24em] text-slate-500 dark:border-zinc-700 dark:text-zinc-400">
                 BR · 2026
               </span>
-            </div>
+            </motion.div>
 
-            <div>
-              <p className="hero-reveal mb-3 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-indigo-600 dark:text-indigo-300">
+            <motion.div variants={{ hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.75, ease: 'easeOut' }}>
+              <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-indigo-600 dark:text-indigo-300">
                 {t('subtitle2')}
               </p>
-              <h1 id="hero-title" className="hero-reveal max-w-4xl text-4xl font-semibold leading-[0.94] tracking-[-0.055em] text-slate-950 sm:text-5xl md:text-6xl lg:text-7xl dark:text-white">
+              <h1 id="hero-title" className="max-w-4xl text-4xl font-semibold leading-[0.94] tracking-[-0.055em] text-slate-950 sm:text-5xl md:text-6xl lg:text-7xl dark:text-white">
                 {t('title')}
               </h1>
-              <p className="hero-reveal mt-5 max-w-2xl text-base leading-7 text-slate-600 md:text-lg dark:text-zinc-400">
+              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 md:text-lg dark:text-zinc-400">
                 {t('subtitle')}
               </p>
-              <div className="hero-reveal mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-600 dark:text-zinc-400">
+              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-600 dark:text-zinc-400">
                 <a href="mailto:marcorrditoro@gmail.com" className="inline-flex items-center gap-2 transition-colors hover:text-indigo-600 dark:hover:text-indigo-300"><Mail size={16} /> Email</a>
                 <a href="https://github.com/Frombull" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 transition-colors hover:text-indigo-600 dark:hover:text-indigo-300"><Github size={16} /> GitHub</a>
                 <a href="https://linkedin.com/in/marcoditoro/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 transition-colors hover:text-indigo-600 dark:hover:text-indigo-300"><Linkedin size={16} /> LinkedIn</a>
               </div>
-              <a href="#about" className="hero-reveal mt-8 inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-slate-500 transition-colors hover:text-indigo-600 dark:text-zinc-500 dark:hover:text-indigo-300">
-                Scroll <ArrowDown size={15} className="animate-bounce" />
-              </a>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </section>
 
-        <div className="timeline-flow">
-          <span className="timeline-progress" aria-hidden="true" />
+        <div className="timeline-flow relative">
+
+          <span className="pointer-events-none absolute inset-y-0 left-[62%] z-0 w-px bg-gradient-to-b from-transparent via-slate-300 to-transparent max-[900px]:left-5 dark:via-zinc-700" aria-hidden="true" />
+          <motion.span
+            className="pointer-events-none absolute left-[62%] top-0 z-10 w-px bg-gradient-to-b from-indigo-500 via-violet-500 to-sky-400 max-[900px]:left-5"
+            animate={{ height: progressHeight }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            aria-hidden="true"
+          />
 
           <TimelineSection title={t('aboutMe')} id="about">
             <p className="stagger-item text-lg leading-8 text-slate-700 dark:text-zinc-300">{t('aboutMeP1')}</p>

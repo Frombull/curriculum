@@ -3,20 +3,24 @@
 import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher';
 import { Moon, Sun } from 'lucide-react';
 import { useLocale } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
+
+const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
 export function Header() {
   const locale = useLocale();
   const [darkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const shouldUseDarkMode = savedTheme === 'dark' || (!savedTheme && systemDark);
     const root = document.documentElement;
 
     root.classList.toggle('dark', shouldUseDarkMode);
+    root.dataset.theme = shouldUseDarkMode ? 'dark' : 'light';
     root.style.colorScheme = shouldUseDarkMode ? 'dark' : 'light';
+    root.style.backgroundColor = shouldUseDarkMode ? '#090a0f' : '#f7f8fb';
     setDarkMode(shouldUseDarkMode);
   }, [locale]);
 
@@ -24,7 +28,9 @@ export function Header() {
     const nextDarkMode = !darkMode;
     setDarkMode(nextDarkMode);
     document.documentElement.classList.toggle('dark', nextDarkMode);
+    document.documentElement.dataset.theme = nextDarkMode ? 'dark' : 'light';
     document.documentElement.style.colorScheme = nextDarkMode ? 'dark' : 'light';
+    document.documentElement.style.backgroundColor = nextDarkMode ? '#090a0f' : '#f7f8fb';
     localStorage.setItem('theme', nextDarkMode ? 'dark' : 'light');
   };
 

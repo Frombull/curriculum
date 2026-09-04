@@ -79,11 +79,13 @@ export default async function LocaleLayout({
     const root = document.documentElement;
     if (shouldDark) {
       root.classList.add('dark');
+      root.dataset.theme = 'dark';
       root.style.colorScheme = 'dark';
       root.style.backgroundColor = '#090a0f';
       root.style.color = '#f4f4f5';
     } else {
       root.classList.remove('dark');
+      root.dataset.theme = 'light';
       root.style.colorScheme = 'light';
       root.style.backgroundColor = '#f7f8fb';
       root.style.color = '#111827';

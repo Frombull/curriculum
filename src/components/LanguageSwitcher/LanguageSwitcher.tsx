@@ -36,7 +36,9 @@ export function LanguageSwitcher() {
 
     requestAnimationFrame(() => {
       root.classList.toggle('dark', currentTheme === 'dark');
+      root.dataset.theme = currentTheme;
       root.style.colorScheme = currentTheme;
+      root.style.backgroundColor = currentTheme === 'dark' ? '#090a0f' : '#f7f8fb';
     });
   };
 
