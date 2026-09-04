@@ -317,6 +317,8 @@ export default function Home() {
             </SectionCard>
 
             <SectionCard title={t('professionalExperience')} icon={<Briefcase className="text-indigo-600 dark:text-indigo-400" />} id="experience">
+              <ExperienceCard role={t('experience4.role')} company={t('experience4.company')} duration={t('experience4.duration')} description={t('experience4.description')} />
+              <div className="border-t border-slate-200 dark:border-zinc-800 my-4" />
               <ExperienceCard role={t('experience1.role')} company={t('experience1.company')} duration={t('experience1.duration')} description={t('experience1.description')} logo="/logos/VBL_LOGO_2.png" />
               <div className="border-t border-slate-200 dark:border-zinc-800 my-4" />
               <ExperienceCard role={t('experience3.role')} company={t('experience3.company')} duration={t('experience3.duration')} description={t('experience3.description')} />
@@ -343,10 +345,10 @@ export default function Home() {
               <div className="space-y-4">
                 {[
                   { key: 'frontend', color: 'bg-red-500', items: [['Blazor', 'frontend'], ['React', 'frontend'], ['Next.js', 'frontend'], ['Tailwind CSS', 'frontend'], ['JavaScript', 'frontend'], ['TypeScript', 'frontend']] },
-                  { key: 'backend', color: 'bg-green-500', items: [['C#', 'backend'], ['EF Core', 'backend'], ['RabbitMQ', 'backend'], ['ABP Framework', 'backend'], ['Python', 'backend'], ['Node.js', 'backend'], ['SQL Server', 'backend']] },
+                  { key: 'backend', color: 'bg-green-500', items: [['C#', 'backend'], ['NestJS', 'backend'], ['Node.js', 'backend'], ['PostgreSQL', 'backend'], ['Prisma', 'backend'], ['EF Core', 'backend'], ['RabbitMQ', 'backend'], ['ABP Framework', 'backend'], ['Python', 'backend'], ['SQL Server', 'backend']] },
                   { key: 'qaAndTesting', color: 'bg-blue-500', items: [[t('skills.unitTesting'), 'qa'], ['Cypress', 'qa'], ['Postman', 'qa'], ['Selenium', 'qa']] },
-                  { key: 'devopsAndCloud', color: 'bg-purple-500', items: [['Azure', 'devops'], ['AWS', 'devops'], ['Docker', 'devops']] },
-                  { key: 'designPatterns', color: 'bg-gray-500', items: [['DDD', 'default'], ['Clean Architecture', 'default'], ['MVC', 'default'], ['RESTful APIs', 'default'], ['Scrum/Kanban', 'default'], ['Git', 'default']] },
+                  { key: 'devopsAndCloud', color: 'bg-purple-500', items: [['AWS', 'devops'], ['Terraform', 'devops'], ['Docker', 'devops'], ['GitHub Actions', 'devops'], ['Azure', 'devops']] },
+                  { key: 'designPatterns', color: 'bg-gray-500', items: [['DDD', 'default'], ['Clean Architecture', 'default'], ['MVC', 'default'], ['RESTful APIs', 'default'], ['MQTT', 'default'], ['Scrum/Kanban', 'default'], ['Git', 'default']] },
                 ].map(({ key, color, items }) => (
                   <div key={key}>
                     <h4 className="font-semibold text-gray-800 dark:text-white mb-2 flex items-center gap-2">

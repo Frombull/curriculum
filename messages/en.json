@@ -11,11 +11,11 @@
   },
   "HomePage": {
     "title": "Marco Di Toro",
-    "subtitle": "Full Stack Developer | .NET & React | 3~ Years Experience",
+    "subtitle": "Full-Stack Developer | TypeScript, React & .NET | 4+ Years of Experience",
     "subtitle2": "Software Engineer | Telecommunications Technician",
     "profilePictureAlt": "Profile Picture",
     "aboutMe": "About Me",
-    "aboutMeP1": "Final-year Software Engineering student at Inatel with a solid foundation as a Telecommunications Technician. I bring over 3 years of professional experience building full-stack solutions using .NET, React/Next.js, and Python.",
+    "aboutMeP1": "Final-year Software Engineering student at Inatel and Telecommunications Technician with over 4 years of full-stack development experience. I work with TypeScript, React/Next.js, Node.js/NestJS, .NET and AWS to build web applications, APIs and integrations for IoT systems.",
     "aboutMeP2": "I'm consistently applying patterns like DDD and Clean Architecture to deliver scalable and maintainable systems. Currently, I am exploring international career opportunities (EU and global). My goal is to leverage my technical background and upcoming graduation to relocate and contribute to a global engineering team.",
     "professionalExperience": "Professional Experience",
     "projects": "Projects",
@@ -25,6 +25,12 @@
     "languages": "Languages",
     "contact": "Contact",
     "linkedin": "LinkedIn",
+    "experience4": {
+      "role": "Full-Stack Developer",
+      "company": "Soil Tecnologia | Santa Rita do Sapucaí, MG",
+      "duration": "07/2026 - Present",
+      "description": "Developing solutions for the automation and monitoring of center-pivot irrigation systems. I work across the front end and back end with Next.js, NestJS, TypeScript, PostgreSQL and Prisma, including device integration through MQTT and REST APIs. I also work with AWS infrastructure using Terraform and Docker, as well as CI/CD with GitHub Actions in a Scrum team."
+    },
     "experience1": {
       "role": "Fullstack developer",
       "company": "Wernher von Braun",

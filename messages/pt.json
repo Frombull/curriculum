@@ -11,11 +11,11 @@
   },
   "HomePage": {
     "title": "Marco Di Toro",
-    "subtitle": "Desenvolvedor Full-Stack | .NET & React | 3~ anos de experiência",
+    "subtitle": "Desenvolvedor Full-Stack | TypeScript, React e .NET | 4+ anos de experiência",
     "subtitle2": "Engenheiro de Software | Técnico em Telecomunicações",
     "profilePictureAlt": "Foto de Perfil",
     "aboutMe": "Sobre Mim",
-    "aboutMeP1": "Estudante de Engenharia de Software no Inatel (último ano) com base sólida como Técnico em Telecomunicações. Possuo mais de 3 anos de experiência profissional construindo soluções full-stack utilizando .NET, React/Next.js e Python.",
+    "aboutMeP1": "Estudante de Engenharia de Software no Inatel (último ano) e Técnico em Telecomunicações, com mais de 4 anos de experiência em desenvolvimento full-stack. Trabalho com TypeScript, React/Next.js, Node.js/NestJS, .NET e AWS na construção de aplicações web, APIs e integrações para sistemas IoT.",
     "aboutMeP2": "Aplico consistentemente padrões como DDD e Clean Architecture para entregar sistemas escaláveis e de fácil manutenção. Atualmente, estou explorando oportunidades de carreira internacional (UE e global). Meu objetivo é aproveitar minha formação técnica e graduação próxima para me mudar e contribuir com uma equipe global de engenharia.",
     "professionalExperience": "Experiência Profissional",
     "projects": "Projetos",
@@ -25,6 +25,12 @@
     "languages": "Idiomas",
     "contact": "Contato",
     "linkedin": "LinkedIn",
+    "experience4": {
+      "role": "Desenvolvedor Full-Stack",
+      "company": "Soil Tecnologia | Santa Rita do Sapucaí, MG",
+      "duration": "07/2026 - Atual",
+      "description": "Desenvolvimento de soluções para automação e monitoramento de pivôs centrais de irrigação. Atuo no front-end e back-end com Next.js, NestJS, TypeScript, PostgreSQL e Prisma, incluindo a integração de dispositivos via MQTT e APIs REST. Também trabalho com infraestrutura na AWS usando Terraform e Docker, além de CI/CD com GitHub Actions, em um time Scrum."
+    },
     "experience1": {
       "role": "Desenvolvedor de software full-stack",
       "company": "Wernher von Braun",
