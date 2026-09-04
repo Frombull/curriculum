@@ -27,15 +27,27 @@ export function LanguageSwitcher() {
   const current = locales.find(l => l.code === locale);
 
   const handleChangeLocale = (newLocale: string) => {
+    const root = document.documentElement;
+    const currentTheme = root.classList.contains('dark') ? 'dark' : 'light';
+
+    localStorage.setItem('theme', currentTheme);
     setOpen(false);
     router.replace(pathname, { locale: newLocale });
+
+    requestAnimationFrame(() => {
+      root.classList.toggle('dark', currentTheme === 'dark');
+      root.style.colorScheme = currentTheme;
+    });
   };
 
   return (
-    <div className="relative inline-block text-left z-50">
+    <div className="relative z-50 inline-block text-left">
       <button
+        type="button"
         onClick={() => setOpen(prev => !prev)}
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 dark:text-zinc-200 bg-white dark:bg-zinc-950 hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-[2px] transition-colors cursor-pointer shadow-sm border border-slate-200/70 dark:border-zinc-800"
+        className="flex h-14 w-14 items-center justify-center rounded-b-2xl text-slate-600 transition-colors hover:bg-slate-100/70 hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-500 dark:text-zinc-300 dark:hover:bg-white/5 dark:hover:text-indigo-300"
+        aria-label={`Alterar idioma. Idioma atual: ${current?.label}`}
+        aria-expanded={open}
       >
         {current?.flag && (
           <Image
@@ -46,31 +58,19 @@ export function LanguageSwitcher() {
             className="rounded-sm shadow-sm"
           />
         )}
-        <span className="uppercase">{current?.code}</span>
-        <svg
-          className={`w-4 h-4 ml-1 transform transition-transform ${open ? 'rotate-180' : ''}`}
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z"
-            clipRule="evenodd"
-          />
-        </svg>
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-44 rounded-[2px] shadow-lg bg-white dark:bg-zinc-950 ring-1 ring-black/5 border border-slate-200/70 dark:border-zinc-800">
-          <div className="py-1">
+        <div className="absolute right-[calc(100%+0.65rem)] top-0 w-44 overflow-hidden rounded-2xl border border-slate-200/80 bg-white/95 p-1.5 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/95">
+          <div>
             {locales.map(({ code, label, flag }) => (
               <button
                 key={code}
                 onClick={() => handleChangeLocale(code)}
-                className={`flex items-center gap-2 px-4 py-2 w-full text-left text-sm cursor-pointer ${
+                className={`flex w-full cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-colors ${
                   code === locale
-                    ? 'bg-indigo-50 dark:bg-indigo-950/40 font-semibold text-indigo-900 dark:text-indigo-200'
-                    : 'text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-900'
+                    ? 'bg-indigo-50 font-semibold text-indigo-900 dark:bg-indigo-500/10 dark:text-indigo-200'
+                    : 'text-slate-700 hover:bg-slate-100 dark:text-zinc-200 dark:hover:bg-white/5'
                 }`}
               >
                 <Image

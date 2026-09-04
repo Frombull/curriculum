@@ -10,8 +10,8 @@ export function Footer() {
     const locale = useLocale();
 
     return (
-        <footer className="bg-white dark:bg-zinc-950 border-t border-slate-200/70 dark:border-zinc-800 mt-20">
-          <div className="mx-auto max-w-7xl px-4 md:px-6 py-10">
+        <footer className="mt-20 border-t border-slate-300/70 dark:border-white/10">
+          <div className="mx-auto max-w-[1180px] px-5 py-12 md:px-8">
             <div className="grid md:grid-cols-2 gap-10 text-center md:text-left items-start">
 
               {/* Coluna */}

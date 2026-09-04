@@ -1,170 +1,48 @@
 'use client';
 
-import { Link } from "@/i18n/navigation";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher/LanguageSwitcher";
-import { useTranslations } from 'next-intl';
-import { Moon, Sun, Menu, X } from 'lucide-react';
-import { useState, useEffect, useMemo, useRef } from 'react';
-import { DM_Mono } from 'next/font/google';
-
-const dmMono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
+import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher';
+import { Moon, Sun } from 'lucide-react';
+import { useLocale } from 'next-intl';
+import { useEffect, useState } from 'react';
 
 export function Header() {
-    const t = useTranslations('Header');
-    const [darkMode, setDarkMode] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const headerRef = useRef<HTMLElement>(null);
+  const locale = useLocale();
+  const [darkMode, setDarkMode] = useState(false);
 
-    const navLinks = useMemo(() => [
-        { href: '#about',      label: t('about') },
-        { href: '#experience', label: t('experience') },
-        { href: '#projects',   label: t('projects') },
-        { href: '#skills',     label: t('skills') },
-        { href: '#education',  label: t('education') },
-    ], [t]);
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldUseDarkMode = savedTheme === 'dark' || (!savedTheme && systemDark);
+    const root = document.documentElement;
 
-    // Theme
-    useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
-            setDarkMode(true);
-            document.documentElement.classList.add('dark');
-        } else {
-            setDarkMode(false);
-            document.documentElement.classList.remove('dark');
-        }
-    }, []);
+    root.classList.toggle('dark', shouldUseDarkMode);
+    root.style.colorScheme = shouldUseDarkMode ? 'dark' : 'light';
+    setDarkMode(shouldUseDarkMode);
+  }, [locale]);
 
-    // Header entrance animation
-    useEffect(() => {
-        const loadAnime = async () => {
-            const { animate, stagger } = await import('animejs');
-            if (!headerRef.current) return;
-            animate(headerRef.current, {
-                opacity: [0, 1],
-                translateY: [-12, 0],
-                duration: 600,
-                easing: 'easeOutExpo',
-            });
-            animate('.header-item', {
-                opacity: [0, 1],
-                translateY: [-8, 0],
-                duration: 500,
-                easing: 'easeOutExpo',
-                delay: stagger(60, { start: 150 }),
-            });
-        };
-        loadAnime();
-    }, []);
+  const toggleDarkMode = () => {
+    const nextDarkMode = !darkMode;
+    setDarkMode(nextDarkMode);
+    document.documentElement.classList.toggle('dark', nextDarkMode);
+    document.documentElement.style.colorScheme = nextDarkMode ? 'dark' : 'light';
+    localStorage.setItem('theme', nextDarkMode ? 'dark' : 'light');
+  };
 
-    // Mobile menu animation
-    useEffect(() => {
-        if (!mobileMenuOpen) return;
-        const loadAnime = async () => {
-            const { animate, stagger } = await import('animejs');
-            animate('.mobile-nav-item', {
-                opacity: [0, 1],
-                translateX: [-10, 0],
-                duration: 300,
-                easing: 'easeOutExpo',
-                delay: stagger(40),
-            });
-        };
-        loadAnime();
-    }, [mobileMenuOpen]);
-
-
-    const toggleDarkMode = () => {
-        const newDarkMode = !darkMode;
-        setDarkMode(newDarkMode);
-        if (newDarkMode) {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        }
-    };
-
-    return (
-        <header
-            ref={headerRef}
-            style={{ opacity: 0 }}
-            className="fixed top-0 w-full z-50 bg-white/90 dark:bg-zinc-950/80 backdrop-blur-md border-b border-slate-200/70 dark:border-zinc-800"
-        >
-            <div className="flex items-center justify-between w-full mx-auto max-w-7xl px-4 md:px-6 py-3">
-                {/* Logo */}
-                <Link
-                    href="/"
-                    className={`header-item text-xl font-bold text-slate-900 dark:text-zinc-200 tracking-tight hover:text-slate-950 dark:hover:text-white transition-colors ${dmMono.className}`}
-                    style={{ opacity: 0 }}
-                >
-                    Marco Di Toro
-                </Link>
-
-                {/* Desktop Navigation — anchor links */}
-                <nav className="hidden md:block">
-                    <ul className="flex items-center gap-1">
-                        {navLinks.map(({ href, label }) => (
-                            <li key={href} className="header-item" style={{ opacity: 0 }}>
-                                <a
-                                    href={href}
-                                    className="px-3 py-2 text-sm transition-colors block text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100"
-                                >
-                                    {label}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-
-                {/* Controls */}
-                <div className="flex items-center gap-3">
-                    <div className="header-item" style={{ opacity: 0 }}>
-                        <button
-                            onClick={toggleDarkMode}
-                            className="p-2 rounded-[2px] text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors hover:cursor-pointer [&>svg]:fill-none"
-                            aria-label="Toggle dark mode"
-                        >
-                            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-                        </button>
-                    </div>
-
-                    <div className="header-item" style={{ opacity: 0 }}>
-                        <LanguageSwitcher />
-                    </div>
-
-                    {/* Mobile Menu Button */}
-                    <button
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="header-item md:hidden p-2 rounded-[2px] text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors [&>svg]:fill-none"
-                        aria-label="Toggle menu"
-                        style={{ opacity: 0 }}
-                    >
-                        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
-                </div>
-            </div>
-
-            {/* Mobile Navigation */}
-            {mobileMenuOpen && (
-                <nav className="md:hidden border-t border-slate-200/70 dark:border-zinc-800 bg-white dark:bg-zinc-950">
-                    <ul className="py-2 px-4">
-                        {navLinks.map(({ href, label }) => (
-                            <li key={href} className="mobile-nav-item" style={{ opacity: 0 }}>
-                                <a
-                                    href={href}
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="block px-3 py-2 rounded-[2px] text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors"
-                                >
-                                    {label}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-            )}
-        </header>
-    );
+  return (
+    <aside
+      aria-label="Controles de aparência e idioma"
+      className="fixed right-4 top-12 z-50 flex flex-col items-stretch overflow-visible rounded-2xl border border-slate-200/80 bg-white/85 shadow-[0_14px_40px_-22px_rgba(15,23,42,0.55)] backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-[0_14px_44px_-20px_rgba(0,0,0,0.85)] md:right-6 md:top-16"
+    >
+      <button
+        type="button"
+        onClick={toggleDarkMode}
+        className="group flex h-14 w-14 items-center justify-center rounded-t-2xl border-b border-slate-200/80 text-slate-600 transition-colors hover:bg-slate-100/70 hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-500 dark:border-white/10 dark:text-zinc-300 dark:hover:bg-white/5 dark:hover:text-indigo-300"
+        aria-label={darkMode ? 'Ativar tema claro' : 'Ativar tema escuro'}
+        title={darkMode ? 'Tema claro' : 'Tema escuro'}
+      >
+        {darkMode ? <Sun size={19} /> : <Moon size={19} />}
+      </button>
+      <LanguageSwitcher />
+    </aside>
+  );
 }

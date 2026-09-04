@@ -80,13 +80,13 @@ export default async function LocaleLayout({
     if (shouldDark) {
       root.classList.add('dark');
       root.style.colorScheme = 'dark';
-      root.style.backgroundColor = '#09090b';
-      root.style.color = '#fafafa';
+      root.style.backgroundColor = '#090a0f';
+      root.style.color = '#f4f4f5';
     } else {
       root.classList.remove('dark');
       root.style.colorScheme = 'light';
-      root.style.backgroundColor = '#f8fafc';
-      root.style.color = '#0f172a';
+      root.style.backgroundColor = '#f7f8fb';
+      root.style.color = '#111827';
     }
     root.classList.add('theme-ready');
   } catch (_) {}
@@ -96,7 +96,7 @@ export default async function LocaleLayout({
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#4f46e5" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#09090b" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090a0f" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/profile_picture.png" />
       </head>
