@@ -438,9 +438,6 @@ export default function Home() {
                 <FileText className="text-indigo-600 dark:text-indigo-400" size={20} />
                 {t('contactSection.downloadTitle')}
               </h4>
-              <p className="text-sm text-slate-600 dark:text-zinc-300 mb-4">
-                {t('contactSection.downloadDescription')}
-              </p>
               <a href="/CV_Marco_Di_Toro.pdf" target="_blank" rel="noopener noreferrer" className="w-full">
                 <button className="w-full bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-semibold py-2 px-4 rounded-[2px] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer hover:shadow-md hover:shadow-indigo-500/20">
                   <ExternalLink size={18} className="group-hover:translate-x-0.5 transition-transform" />

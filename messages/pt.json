@@ -103,9 +103,8 @@
       "title": "Contato",
       "subtitle": "Vamos trabalhar juntos!",
       "description": "Estou sempre aberto a novas oportunidades e projetos interessantes. Entre em contato comigo através de qualquer um dos canais abaixo.",
-      "downloadTitle": "Visualizar meu currículo",
-      "downloadDescription": "Visualize uma versão em PDF de meu currículo diretamente no navegador.",
-      "downloadButton": "Visualizar CV"
+      "downloadTitle": "Meu currículo",
+      "downloadButton": "Abrir CV"
     },
     "linkedinQRCodeAlt": "QR Code para o LinkedIn",
     "linkedinQRCodeTitle": "Visitar LinkedIn",
