@@ -2,120 +2,203 @@
 @custom-variant dark (.dark &);
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --header-height: 80px;
+  --background: #008080;
+  --foreground: #000000;
+  --win-bg: #c0c0c0;
+  --win-surface: #ffffff;
+  --win-gutter: #e4e4e4;
+  --win-gutter-text: #808080;
+  --win-border-light: #ffffff;
+  --win-border-mid: #dfdfdf;
+  --win-border-dark: #808080;
+  --win-border-shadow: #0a0a0a;
+  --win-title-from: #000080;
+  --win-title-to: #1084d0;
+  --win-link: #0000ee;
+  --win-link-visited: #551a8b;
   color-scheme: light;
 }
 
 .dark {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --header-height: 80px;
+  --background: #132626;
+  --foreground: #e0e0e0;
+  --win-bg: #2d2d30;
+  --win-surface: #1e1e1e;
+  --win-gutter: #252526;
+  --win-gutter-text: #858585;
+  --win-border-light: #4f4f54;
+  --win-border-mid: #3a3a3e;
+  --win-border-dark: #19191b;
+  --win-border-shadow: #09090a;
+  --win-title-from: #1b365d;
+  --win-title-to: #2b6cb0;
+  --win-link: #66b3ff;
+  --win-link-visited: #b39ddb;
   color-scheme: dark;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-[id] {
-  scroll-margin-top: 72px;
-}
-
+html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
   margin: 0;
   padding: 0;
-}
-
-.theme-ready body {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-html {
-  background: var(--background);
-}
-
-html, body {
   overflow-x: hidden;
+  -webkit-font-smoothing: none;
 }
 
-html {
-  scroll-behavior: smooth;
+.font-win98 {
+  font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.font-npp {
+  font-family: "Courier New", Consolas, "Lucida Console", monospace;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Classic Windows 98 3D Bevels */
+.win98-outset {
+  background-color: var(--win-bg);
+  border-top: 2px solid var(--win-border-light);
+  border-left: 2px solid var(--win-border-light);
+  border-right: 2px solid var(--win-border-shadow);
+  border-bottom: 2px solid var(--win-border-shadow);
+  box-shadow:
+    inset 1px 1px 0 var(--win-border-mid),
+    inset -1px -1px 0 var(--win-border-dark);
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out;
+.win98-inset {
+  background-color: var(--win-surface);
+  border-top: 2px solid var(--win-border-dark);
+  border-left: 2px solid var(--win-border-dark);
+  border-right: 2px solid var(--win-border-light);
+  border-bottom: 2px solid var(--win-border-light);
+  box-shadow:
+    inset 1px 1px 0 var(--win-border-shadow),
+    inset -1px -1px 0 var(--win-border-mid);
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out;
-  animation-fill-mode: both;
+.win98-inset-gray {
+  background-color: var(--win-bg);
+  border-top: 1px solid var(--win-border-dark);
+  border-left: 1px solid var(--win-border-dark);
+  border-right: 1px solid var(--win-border-light);
+  border-bottom: 1px solid var(--win-border-light);
 }
 
-/* Stagger animation for multiple elements */
-.animate-fade-in-up:nth-child(1) { animation-delay: 0.1s; }
-.animate-fade-in-up:nth-child(2) { animation-delay: 0.2s; }
-.animate-fade-in-up:nth-child(3) { animation-delay: 0.3s; }
-.animate-fade-in-up:nth-child(4) { animation-delay: 0.4s; }
-.animate-fade-in-up:nth-child(5) { animation-delay: 0.5s; }
-.animate-fade-in-up:nth-child(6) { animation-delay: 0.6s; }
+.win98-btn {
+  background-color: var(--win-bg);
+  color: var(--foreground);
+  border-top: 2px solid var(--win-border-light);
+  border-left: 2px solid var(--win-border-light);
+  border-right: 2px solid var(--win-border-shadow);
+  border-bottom: 2px solid var(--win-border-shadow);
+  box-shadow: inset -1px -1px 0 var(--win-border-dark);
+  cursor: pointer;
+  user-select: none;
+}
 
-/* Custom scrollbar */
+.win98-btn:active,
+.win98-btn-active {
+  border-top: 2px solid var(--win-border-shadow);
+  border-left: 2px solid var(--win-border-shadow);
+  border-right: 2px solid var(--win-border-light);
+  border-bottom: 2px solid var(--win-border-light);
+  box-shadow: inset 1px 1px 0 var(--win-border-dark);
+  transform: translate(1px, 1px);
+}
+
+.win98-btn:focus-visible {
+  outline: 1px dotted var(--foreground);
+  outline-offset: -4px;
+}
+
+.win98-titlebar {
+  background: linear-gradient(90deg, var(--win-title-from), var(--win-title-to));
+  color: #ffffff;
+}
+
+.win98-fieldset {
+  border: 2px groove var(--win-border-light);
+  padding: 12px;
+}
+
+.dark .win98-fieldset {
+  border: 1px solid var(--win-border-light);
+}
+
+.win98-link {
+  color: var(--win-link);
+  text-decoration: underline;
+}
+
+.win98-link:visited {
+  color: var(--win-link-visited);
+}
+
+.win98-link:hover {
+  background-color: #000080;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Classic Notepad++ Tab */
+.npp-tab {
+  background-color: var(--win-bg);
+  border-top: 2px solid var(--win-border-light);
+  border-left: 2px solid var(--win-border-light);
+  border-right: 2px solid var(--win-border-shadow);
+  border-bottom: 1px solid var(--win-border-dark);
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+.npp-tab-active {
+  background-color: var(--win-surface);
+  border-top: 2px solid #ff9900;
+  border-left: 2px solid var(--win-border-light);
+  border-right: 2px solid var(--win-border-shadow);
+  border-bottom: 2px solid var(--win-surface);
+  font-weight: 700;
+  margin-bottom: -2px;
+  padding-bottom: 6px;
+}
+
+/* Classic Windows 98 Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 16px;
+  height: 16px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: repeating-conic-gradient(var(--win-border-mid) 0% 25%, var(--win-bg) 0% 50%) 50% / 2px 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 2px;
+  background: var(--win-bg);
+  border-top: 2px solid var(--win-border-light);
+  border-left: 2px solid var(--win-border-light);
+  border-right: 2px solid var(--win-border-shadow);
+  border-bottom: 2px solid var(--win-border-shadow);
+  box-shadow: inset -1px -1px 0 var(--win-border-dark);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a1;
+::-webkit-scrollbar-corner {
+  background: var(--win-bg);
 }
 
-/* Dark mode scrollbar */
-.dark ::-webkit-scrollbar-track {
-  background: #2d3748;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: #4a5568;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #718096;
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
 }

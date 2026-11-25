@@ -1,30 +1,31 @@
 import Link from 'next/link';
-import { AlertTriangle, Home } from 'lucide-react';
+import { Win98Window } from '@/components/Win98/Win98Window';
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-center p-4">
+    <div className="flex items-center justify-center min-h-screen p-4">
       <div className="max-w-md w-full">
-        <div className="bg-white dark:bg-gray-800/50 rounded-xl shadow-lg p-8">
-          <div className="flex justify-center mb-6">
-            <AlertTriangle className="text-yellow-500" size={64} />
+        <Win98Window title="Error 404 - Windows">
+          <div className="p-5 font-win98 text-xs space-y-4">
+            <div className="flex items-start gap-4">
+              <div
+                aria-hidden="true"
+                className="w-9 h-9 rounded-full bg-[#cc0000] text-white flex items-center justify-center font-bold text-lg shrink-0 border-2 border-black"
+              >
+                ×
+              </div>
+              <div className="space-y-1.5">
+                <p className="font-bold text-sm">404 - File Not Found</p>
+                <p>Oops! Página não existe ou foi movida.</p>
+              </div>
+            </div>
+            <div className="flex justify-end pt-1">
+              <Link href="/" className="win98-btn px-4 py-1.5 font-bold">
+                OK (Voltar)
+              </Link>
+            </div>
           </div>
-          <h1 className="text-6xl font-extrabold text-gray-800 dark:text-white">
-            404
-          </h1>
-          <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-200 mt-2">
-            Oops! Página não existe ou foi movida.
-          </h2>
-          <div className="mt-8">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300"
-            >
-              <Home size={20} />
-              Voltar para a Página Inicial
-            </Link>
-          </div>
-        </div>
+        </Win98Window>
       </div>
     </div>
   );
