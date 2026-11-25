@@ -6,7 +6,7 @@ export default function TermsOfServicePage() {
   const t = useTranslations('TermsOfService');
 
   return (
-    <div className="relative bg-slate-50 dark:bg-zinc-950 min-h-screen font-sans pt-20">
+    <div className="relative bg-slate-50 dark:bg-zinc-950 min-h-screen font-sans pt-10 md:pt-14 pb-20 md:pb-8">
       <div
         className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-[0.15] dark:opacity-[0.3] mix-blend-overlay"
         style={{

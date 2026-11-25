@@ -3,7 +3,7 @@ import { getMessages } from 'next-intl/server';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { Header } from '@/components/Header/Header';
+import { SideRail } from '@/components/SideRail/SideRail';
 import Providers from '@/components/Providers';
 import { routing } from '@/i18n/routing';
 import '@/app/globals.css';
@@ -133,7 +133,7 @@ export default async function LocaleLayout({
       </head>
       <body>
         <Providers messages={messages} locale={locale}>
-          <Header />
+          <SideRail />
           <main role="main" id="main-content">
             {children}
           </main>

@@ -1,14 +1,4 @@
 {
-  "Header": {
-    "about": "About",
-    "experience": "Experience",
-    "projects": "Projects",
-    "skills": "Skills",
-    "education": "Education",
-    "contact": "Contact",
-    "blog": "Blog",
-    "curriculo": "Resume"
-  },
   "HomePage": {
     "title": "Marco Di Toro",
     "subtitle": "Full-Stack Developer | TypeScript, React & .NET | 4+ Years of Experience",
