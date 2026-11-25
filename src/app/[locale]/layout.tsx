@@ -1,24 +1,10 @@
 import { hasLocale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { Geist, Geist_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { SideRail } from '@/components/SideRail/SideRail';
 import Providers from '@/components/Providers';
 import { routing } from '@/i18n/routing';
-import '@/app/globals.css';
-
-const geistSans = Geist({
-  subsets: ['latin'],
-  variable: '--font-geist-sans',
-  display: 'swap',
-});
-
-const geistMono = Geist_Mono({
-  subsets: ['latin'],
-  variable: '--font-geist-mono',
-  display: 'swap',
-});
 
 export async function generateMetadata({
   params,
@@ -94,51 +80,11 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html
-      lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable}`}
-      suppressHydrationWarning
-    >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(() => {
-  try {
-    const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const shouldDark = stored === 'dark' || (!stored && prefersDark);
-    const root = document.documentElement;
-    if (shouldDark) {
-      root.classList.add('dark');
-      root.style.colorScheme = 'dark';
-      root.style.backgroundColor = '#09090b';
-      root.style.color = '#fafafa';
-    } else {
-      root.classList.remove('dark');
-      root.style.colorScheme = 'light';
-      root.style.backgroundColor = '#f8fafc';
-      root.style.color = '#0f172a';
-    }
-    root.classList.add('theme-ready');
-  } catch (_) {}
-})();`,
-          }}
-        />
-
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#4f46e5" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#09090b" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/profile_picture.jpg" />
-      </head>
-      <body>
-        <Providers messages={messages} locale={locale}>
-          <SideRail />
-          <main role="main" id="main-content">
-            {children}
-          </main>
-        </Providers>
-      </body>
-    </html>
+    <Providers messages={messages} locale={locale}>
+      <SideRail />
+      <main role="main" id="main-content">
+        {children}
+      </main>
+    </Providers>
   );
 }
