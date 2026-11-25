@@ -4,14 +4,28 @@ import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher/LanguageSwitcher";
 import { useTranslations } from 'next-intl';
 import { Moon, Sun, Menu, X } from 'lucide-react';
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef, useSyncExternalStore } from 'react';
 import { DM_Mono } from 'next/font/google';
 
 const dmMono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
 
+function subscribeTheme(callback: () => void) {
+    const observer = new MutationObserver(callback);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+}
+
+function getThemeSnapshot() {
+    return document.documentElement.classList.contains('dark');
+}
+
+function getServerThemeSnapshot() {
+    return false;
+}
+
 export function Header() {
     const t = useTranslations('Header');
-    const [darkMode, setDarkMode] = useState(false);
+    const darkMode = useSyncExternalStore(subscribeTheme, getThemeSnapshot, getServerThemeSnapshot);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const headerRef = useRef<HTMLElement>(null);
 
@@ -22,19 +36,6 @@ export function Header() {
         { href: '#skills',     label: t('skills') },
         { href: '#education',  label: t('education') },
     ], [t]);
-
-    // Theme
-    useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
-            setDarkMode(true);
-            document.documentElement.classList.add('dark');
-        } else {
-            setDarkMode(false);
-            document.documentElement.classList.remove('dark');
-        }
-    }, []);
 
     // Header entrance animation
     useEffect(() => {
@@ -77,7 +78,6 @@ export function Header() {
 
     const toggleDarkMode = () => {
         const newDarkMode = !darkMode;
-        setDarkMode(newDarkMode);
         if (newDarkMode) {
             document.documentElement.classList.add('dark');
             localStorage.setItem('theme', 'dark');

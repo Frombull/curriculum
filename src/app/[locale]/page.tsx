@@ -1,6 +1,7 @@
 'use client';
 
-import { Mail, Linkedin, Briefcase, Code, GraduationCap, Star, User, Github, ExternalLink, Award, FileText } from 'lucide-react';
+import { Mail, Briefcase, Code, GraduationCap, Star, User, ExternalLink, Award, FileText } from 'lucide-react';
+import { GithubIcon, LinkedinIcon } from '@/components/icons/BrandIcons';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Footer } from '@/components/Footer/Footer';
@@ -150,7 +151,7 @@ const ProjectCard = ({ title, description, logo, githubUrl, demoUrl }) => {
             {githubUrl && (
               <a href={githubUrl} target="_blank" rel="noopener noreferrer"
                 className="p-1.5 text-slate-400 hover:text-slate-700 dark:text-zinc-500 dark:hover:text-zinc-200 transition-colors">
-                <Github size={16} />
+                <GithubIcon size={16} />
               </a>
             )}
             {demoUrl && (
@@ -296,12 +297,12 @@ export default function Home() {
               marcorrditoro@gmail.com
             </IconText>
             <a href="https://github.com/Frombull" target="_blank" rel="noopener noreferrer">
-              <IconText icon={<Github size={16} />} className="text-slate-600 dark:text-zinc-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
+              <IconText icon={<GithubIcon size={16} />} className="text-slate-600 dark:text-zinc-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
                 github.com/Frombull
               </IconText>
             </a>
             <a href="https://linkedin.com/in/marcoditoro/" target="_blank" rel="noopener noreferrer">
-              <IconText icon={<Linkedin size={16} />} className="text-slate-600 dark:text-zinc-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
+              <IconText icon={<LinkedinIcon size={16} />} className="text-slate-600 dark:text-zinc-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
                 linkedin.com/in/marcoditoro
               </IconText>
             </a>
@@ -421,7 +422,7 @@ export default function Home() {
               </div>
             </SectionCard>
 
-            <SectionCard title={t('linkedin')} icon={<Linkedin className="text-indigo-600 dark:text-indigo-400" />} id="linkedin">
+            <SectionCard title={t('linkedin')} icon={<LinkedinIcon className="text-indigo-600 dark:text-indigo-400" />} id="linkedin">
               <div className="flex justify-center p-2 rounded-lg">
                 <a href="https://linkedin.com/in/marcoditoro" target="_blank" rel="noopener noreferrer" title={t('linkedinQRCodeTitle')}
                   className="hover:scale-105 transition-transform duration-300 block">

@@ -1,6 +1,6 @@
 'use client';
 
-import { Github, Linkedin } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/icons/BrandIcons";
 import { useTranslations } from "next-intl";
 import { useLocale } from 'next-intl';
 import Link from "next/link";
@@ -31,11 +31,11 @@ export function Footer() {
                 <div className="flex justify-center md:justify-start items-center gap-4 mt-2">
                   <a href="https://github.com/Frombull" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
                     className="text-slate-600 hover:text-indigo-700 dark:text-zinc-400 dark:hover:text-indigo-300 transition-colors">
-                    <Github size={24} />
+                    <GithubIcon size={24} />
                   </a>
                   <a href="https://linkedin.com/in/marcoditoro" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
                     className="text-slate-600 hover:text-indigo-700 dark:text-zinc-400 dark:hover:text-indigo-300 transition-colors">
-                    <Linkedin size={24} />
+                    <LinkedinIcon size={24} />
                   </a>
                 </div>
               </div>
