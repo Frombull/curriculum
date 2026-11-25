@@ -2,7 +2,6 @@ import { hasLocale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { Win98Taskbar } from '@/components/Win98/Win98Taskbar';
 import Providers from '@/components/Providers';
 import { routing } from '@/i18n/routing';
 
@@ -84,7 +83,6 @@ export default async function LocaleLayout({
       <main role="main" id="main-content">
         {children}
       </main>
-      <Win98Taskbar />
     </Providers>
   );
 }

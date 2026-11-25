@@ -100,7 +100,7 @@ export function Win98LegalLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="min-h-screen pb-12 pt-4 px-3 sm:px-6 max-w-4xl mx-auto">
+    <div className="min-h-screen pb-6 pt-4 px-3 sm:px-6 max-w-4xl mx-auto">
       <Win98Window title={`${title} - Notepad.exe`} statusText="Read-Only | UTF-8">
         <div className="p-2 border-b border-[var(--win-border-dark)]">
           <Link href="/" className="win98-btn inline-block px-3 py-1 text-xs font-bold">

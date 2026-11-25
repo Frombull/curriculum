@@ -10,14 +10,9 @@ import {
 } from '@/data/resume';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { Fragment, useEffect, useRef, useState } from 'react';
-import {
-  ComputerIcon,
-  GlobeShortcutIcon,
-  NotepadIcon,
-  PdfShortcutIcon,
-  SmallFileIcon,
-} from './Win98Icons';
+import { Fragment, useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { SmallFileIcon } from './Win98Icons';
+import { Win98Desktop } from './Win98Desktop';
 import { Win98Window } from './Win98Window';
 
 type TabId =
@@ -37,16 +32,73 @@ const TABS: { id: TabId; color: string }[] = [
   { id: 'contact.bmp', color: '#cc0000' },
 ];
 
-const TAB_LINE_COUNTS: Record<TabId, number> = {
-  'curriculum.md': 64,
-  'experience.log': 32,
-  'projects.cs': 32,
-  'skills.json': 44,
-  'education.txt': 32,
-  'contact.bmp': 28,
-};
+type MenuKey = 'file' | 'language' | null;
 
-type MenuKey = 'file' | 'edit' | 'view' | 'language' | 'help' | null;
+function playWin98ErrorSound() {
+  try {
+    const AudioCtx =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext })
+        .webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const now = ctx.currentTime;
+    const master = ctx.createGain();
+    master.gain.setValueAtTime(0.05, now);
+    master.connect(ctx.destination);
+
+    // Classic low Win98-style error chord
+    [196, 233.08, 293.66].forEach((freq) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, now);
+      gain.gain.setValueAtTime(0.6, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+      osc.connect(gain);
+      gain.connect(master);
+      osc.start(now);
+      osc.stop(now + 0.25);
+    });
+    window.setTimeout(() => ctx.close(), 350);
+  } catch {
+    // Ignore if browser blocks audio
+  }
+}
+
+function subscribeTheme(callback: () => void) {
+  const observer = new MutationObserver(callback);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class'],
+  });
+  return () => observer.disconnect();
+}
+
+function getThemeSnapshot() {
+  return document.documentElement.classList.contains('dark');
+}
+
+function getServerThemeSnapshot() {
+  return false;
+}
+
+function toggleThemeDom(nextDark: boolean) {
+  const root = document.documentElement;
+  if (nextDark) {
+    root.classList.add('dark');
+    root.style.colorScheme = 'dark';
+    root.style.backgroundColor = '#132626';
+    root.style.color = '#e0e0e0';
+    localStorage.setItem('theme', 'dark');
+  } else {
+    root.classList.remove('dark');
+    root.style.colorScheme = 'light';
+    root.style.backgroundColor = '#008080';
+    root.style.color = '#000000';
+    localStorage.setItem('theme', 'light');
+  }
+}
 
 export function NotepadResume() {
   const t = useTranslations('HomePage');
@@ -55,21 +107,35 @@ export function NotepadResume() {
   const router = useRouter();
   const isPt = locale === 'pt';
 
+  const isDark = useSyncExternalStore(
+    subscribeTheme,
+    getThemeSnapshot,
+    getServerThemeSnapshot
+  );
+
   const [activeTab, setActiveTab] = useState<TabId>('curriculum.md');
-  const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [isMaximized, setIsMaximized] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<MenuKey>(null);
   const [statusNote, setStatusNote] = useState<string | null>(null);
+  const [isShaking, setIsShaking] = useState(false);
+  const [lineCount, setLineCount] = useState(40);
 
   const menuBarRef = useRef<HTMLDivElement>(null);
+  const editorContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onToggleMinimize = () => setIsMinimized((v) => !v);
-    window.addEventListener('win98-toggle-minimize', onToggleMinimize);
-    return () => window.removeEventListener('win98-toggle-minimize', onToggleMinimize);
-  }, []);
+    const el = editorContentRef.current;
+    if (!el) return;
+    const LINE_HEIGHT_PX = 19.2;
+    const updateLines = () => {
+      const needed = Math.max(24, Math.ceil((el.scrollHeight - 24) / LINE_HEIGHT_PX));
+      setLineCount(needed);
+    };
+    updateLines();
+    const observer = new ResizeObserver(updateLines);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [activeTab, isMaximized]);
 
   useEffect(() => {
     if (!openMenu) return;
@@ -100,111 +166,53 @@ export function NotepadResume() {
     }
   };
 
+  const handleCloseError = () => {
+    playWin98ErrorSound();
+    setIsShaking(false);
+    requestAnimationFrame(() => setIsShaking(true));
+    setStatusNote(
+      isPt ? 'Erro: Não é possível fechar o currículo!' : 'Error: Cannot close curriculum!'
+    );
+    window.setTimeout(() => {
+      setIsShaking(false);
+      setStatusNote(null);
+    }, 1800);
+  };
+
   const statusText = `UTF-8  |  Windows (CR LF)  |  ${activeTab}  |  ${
     statusNote ?? (isPt ? 'Pronto' : 'Ready')
   }`;
 
-  const lineCount = TAB_LINE_COUNTS[activeTab];
-
   return (
-    <div className="min-h-screen pb-12 pt-3 px-2 sm:px-4 md:px-6 flex flex-col lg:flex-row items-start gap-4">
-      {/* Desktop Shortcuts (left column on desktop) */}
-      <aside
-        aria-label="Desktop shortcuts"
-        className="no-print hidden lg:flex flex-col gap-4 w-24 shrink-0 pt-1 select-none"
-      >
-        <button
-          type="button"
-          onClick={() => setAboutOpen(true)}
-          className="flex flex-col items-center gap-1 p-1 text-white hover:bg-[#000080]/50 focus:outline-1 focus:outline-dotted focus:outline-white cursor-pointer"
-        >
-          <ComputerIcon className="w-8 h-8" />
-          <span className="font-win98 text-[11px] leading-tight text-center drop-shadow-[1px_1px_0_#000]">
-            {isPt ? 'Meu Computador' : 'My Computer'}
-          </span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => {
-            setIsMinimized(false);
-            setActiveTab('curriculum.md');
-          }}
-          className="flex flex-col items-center gap-1 p-1 text-white hover:bg-[#000080]/50 focus:outline-1 focus:outline-dotted focus:outline-white cursor-pointer"
-        >
-          <NotepadIcon className="w-8 h-8" />
-          <span className="font-win98 text-[11px] leading-tight text-center drop-shadow-[1px_1px_0_#000]">
-            curriculum.md
-          </span>
-        </button>
-
-        <a
-          href="/CV_Marco_Di_Toro.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center gap-1 p-1 text-white hover:bg-[#000080]/50"
-        >
-          <PdfShortcutIcon className="w-8 h-8" />
-          <span className="font-win98 text-[11px] leading-tight text-center drop-shadow-[1px_1px_0_#000]">
-            CV_Marco.pdf
-          </span>
-        </a>
-
-        <a
-          href="https://github.com/Frombull"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center gap-1 p-1 text-white hover:bg-[#000080]/50"
-        >
-          <GlobeShortcutIcon className="w-8 h-8" />
-          <span className="font-win98 text-[11px] leading-tight text-center drop-shadow-[1px_1px_0_#000]">
-            GitHub.url
-          </span>
-        </a>
-
-        <a
-          href="https://linkedin.com/in/marcoditoro/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center gap-1 p-1 text-white hover:bg-[#000080]/50"
-        >
-          <GlobeShortcutIcon className="w-8 h-8" />
-          <span className="font-win98 text-[11px] leading-tight text-center drop-shadow-[1px_1px_0_#000]">
-            LinkedIn.url
-          </span>
-        </a>
-      </aside>
+    <div
+      className={`min-h-screen pb-6 pt-3 px-2 sm:px-4 md:px-6 pointer-events-none ${
+        isMaximized ? '' : 'lg:pl-48'
+      }`}
+    >
+      {/* Fixed Win98 Desktop with Snap-to-Grid Icons & Marquee Selection */}
+      <Win98Desktop
+        isPt={isPt}
+        locale={locale}
+        isDark={isDark}
+        onSwitchLocale={handleSwitchLocale}
+        onToggleTheme={toggleThemeDom}
+      />
 
       {/* Main Notepad++ / Win98 Window */}
       <div
-        className={`flex-1 w-full ${
+        id="win98-main-window"
+        className={`relative z-10 pointer-events-auto w-full ${
           isMaximized ? 'max-w-none' : 'max-w-5xl mx-auto'
-        }`}
+        } ${isShaking ? 'animate-win98-shake' : ''}`}
       >
-        {isMinimized ? (
-          <div className="win98-outset p-6 max-w-md mx-auto mt-12 text-center font-win98">
-            <p className="text-sm mb-4">
-              {isPt
-                ? 'A janela do Notepad++ foi minimizada.'
-                : 'The Notepad++ window has been minimized.'}
-            </p>
-            <button
-              type="button"
-              onClick={() => setIsMinimized(false)}
-              className="win98-btn px-4 py-1.5 text-xs font-bold"
-            >
-              {isPt ? 'Restaurar Janela' : 'Restore Window'}
-            </button>
-          </div>
-        ) : (
-          <Win98Window
-            title={`${activeTab} - Notepad++ [Win98 Edition]`}
-            statusText={statusText}
-            isMaximized={isMaximized}
-            onMinimize={() => setIsMinimized(true)}
-            onMaximize={() => setIsMaximized((v) => !v)}
-            onClose={() => setIsMinimized(true)}
-          >
+        <Win98Window
+          title={`${activeTab} - Notepad++ [Win98 Edition]`}
+          statusText={statusText}
+          isMaximized={isMaximized}
+          onMinimize={() => {}}
+          onMaximize={() => setIsMaximized((v) => !v)}
+          onClose={handleCloseError}
+        >
             {/* Menu Bar */}
             <div
               ref={menuBarRef}
@@ -244,88 +252,12 @@ export function NotepadResume() {
                     >
                       {isPt ? 'Imprimir...' : 'Print...'}
                     </button>
-                    <div className="border-t border-[var(--win-border-dark)] my-1" />
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setOpenMenu(null);
-                        setIsMinimized(true);
-                      }}
-                      className="w-full text-left px-3 py-1 hover:bg-[#000080] hover:text-white cursor-pointer"
-                    >
-                      {isPt ? 'Minimizar' : 'Minimize'}
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {/* Edit */}
-              <div className="relative">
-                <button
-                  type="button"
-                  onClick={() => setOpenMenu(openMenu === 'edit' ? null : 'edit')}
-                  className={`px-2 py-0.5 cursor-pointer ${
-                    openMenu === 'edit'
-                      ? 'bg-[#000080] text-white'
-                      : 'hover:bg-[#000080] hover:text-white'
-                  }`}
-                >
-                  {isPt ? 'Editar' : 'Edit'}
-                </button>
-                {openMenu === 'edit' && (
-                  <div className="win98-outset absolute left-0 top-full mt-0.5 w-52 py-1 z-40 shadow-md">
                     <button
                       type="button"
                       onClick={handleCopyEmail}
                       className="w-full text-left px-3 py-1 hover:bg-[#000080] hover:text-white cursor-pointer"
                     >
                       {isPt ? 'Copiar Email' : 'Copy Email'}
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {/* View */}
-              <div className="relative">
-                <button
-                  type="button"
-                  onClick={() => setOpenMenu(openMenu === 'view' ? null : 'view')}
-                  className={`px-2 py-0.5 cursor-pointer ${
-                    openMenu === 'view'
-                      ? 'bg-[#000080] text-white'
-                      : 'hover:bg-[#000080] hover:text-white'
-                  }`}
-                >
-                  {isPt ? 'Exibir' : 'View'}
-                </button>
-                {openMenu === 'view' && (
-                  <div className="win98-outset absolute left-0 top-full mt-0.5 w-52 py-1 z-40 shadow-md">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setShowLineNumbers((v) => !v);
-                        setOpenMenu(null);
-                      }}
-                      className="w-full text-left px-3 py-1 hover:bg-[#000080] hover:text-white cursor-pointer"
-                    >
-                      {showLineNumbers ? '✓ ' : '   '}
-                      {isPt ? 'Números de Linha' : 'Line Numbers'}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setIsMaximized((v) => !v);
-                        setOpenMenu(null);
-                      }}
-                      className="w-full text-left px-3 py-1 hover:bg-[#000080] hover:text-white cursor-pointer"
-                    >
-                      {isMaximized
-                        ? isPt
-                          ? 'Restaurar Janela'
-                          : 'Restore Window'
-                        : isPt
-                          ? 'Maximizar Janela'
-                          : 'Maximize Window'}
                     </button>
                   </div>
                 )}
@@ -366,83 +298,24 @@ export function NotepadResume() {
                 )}
               </div>
 
-              {/* Help */}
-              <div className="relative">
+              {/* Mobile/Tablet quick Language & Theme buttons (desktop uses desktop icons) */}
+              <div className="ml-auto flex items-center gap-1 lg:hidden text-[11px]">
                 <button
                   type="button"
-                  onClick={() => setOpenMenu(openMenu === 'help' ? null : 'help')}
-                  className={`px-2 py-0.5 cursor-pointer ${
-                    openMenu === 'help'
-                      ? 'bg-[#000080] text-white'
-                      : 'hover:bg-[#000080] hover:text-white'
-                  }`}
+                  onClick={() => handleSwitchLocale(isPt ? 'en' : 'pt')}
+                  className="win98-btn px-2 py-0.5 font-npp font-bold"
                 >
-                  {isPt ? 'Ajuda' : 'Help'}
+                  {locale.toUpperCase()}
                 </button>
-                {openMenu === 'help' && (
-                  <div className="win98-outset absolute left-0 top-full mt-0.5 w-48 py-1 z-40 shadow-md">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setOpenMenu(null);
-                        setAboutOpen(true);
-                      }}
-                      className="w-full text-left px-3 py-1 hover:bg-[#000080] hover:text-white cursor-pointer"
-                    >
-                      {isPt ? 'Sobre Marco Di Toro...' : 'About Marco Di Toro...'}
-                    </button>
-                  </div>
-                )}
+                <button
+                  type="button"
+                  onClick={() => toggleThemeDom(!isDark)}
+                  className="win98-btn px-2 py-0.5"
+                  aria-label="Toggle theme"
+                >
+                  {isDark ? '☀️' : '🌙'}
+                </button>
               </div>
-            </div>
-
-            {/* Toolbar */}
-            <div className="no-print flex flex-wrap items-center gap-1 px-1.5 py-1 border-b border-[var(--win-border-dark)] text-[11px] font-win98">
-              <a
-                href="/CV_Marco_Di_Toro.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="win98-btn px-2 py-0.5 flex items-center gap-1"
-              >
-                <span>📄</span>
-                <span>{t('contactSection.downloadButton')}</span>
-              </a>
-              <button
-                type="button"
-                onClick={() => window.print()}
-                className="win98-btn px-2 py-0.5 flex items-center gap-1"
-              >
-                <span>🖨️</span>
-                <span>{isPt ? 'Imprimir' : 'Print'}</span>
-              </button>
-              <button
-                type="button"
-                onClick={handleCopyEmail}
-                className="win98-btn px-2 py-0.5 flex items-center gap-1"
-              >
-                <span>📋</span>
-                <span>{isPt ? 'Copiar Email' : 'Copy Email'}</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setShowLineNumbers((v) => !v)}
-                className={`win98-btn px-2 py-0.5 flex items-center gap-1 ${
-                  showLineNumbers ? 'win98-btn-active' : ''
-                }`}
-              >
-                <span className="font-npp font-bold">#</span>
-                <span className="hidden sm:inline">
-                  {isPt ? 'Linhas' : 'Lines'}
-                </span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setAboutOpen(true)}
-                className="win98-btn px-2 py-0.5 flex items-center gap-1"
-              >
-                <span>ℹ️</span>
-                <span>{isPt ? 'Sobre' : 'About'}</span>
-              </button>
             </div>
 
             {/* Notepad++ Document Tabs */}
@@ -474,19 +347,20 @@ export function NotepadResume() {
             {/* Editor Surface */}
             <div className="win98-inset m-1 flex min-h-[540px] overflow-x-auto">
               {/* Notepad++ Line Number Gutter */}
-              {showLineNumbers && (
-                <div
-                  aria-hidden="true"
-                  className="no-print hidden sm:flex flex-col items-end px-2 py-3 select-none font-npp text-xs leading-[1.6] border-r border-[var(--win-border-dark)] bg-[var(--win-gutter)] text-[var(--win-gutter-text)] shrink-0"
-                >
-                  {Array.from({ length: lineCount }, (_, idx) => (
-                    <span key={idx + 1}>{idx + 1}</span>
-                  ))}
-                </div>
-              )}
+              <div
+                aria-hidden="true"
+                className="no-print hidden sm:flex flex-col items-end px-2 py-3 select-none font-npp text-xs leading-[1.6] border-r border-[var(--win-border-dark)] bg-[var(--win-gutter)] text-[var(--win-gutter-text)] shrink-0"
+              >
+                {Array.from({ length: lineCount }, (_, idx) => (
+                  <span key={idx + 1}>{idx + 1}</span>
+                ))}
+              </div>
 
               {/* Active Tab Document Content */}
-              <div className="flex-1 p-3 sm:p-5 text-sm font-win98 space-y-5 min-w-0">
+              <div
+                ref={editorContentRef}
+                className="flex-1 p-3 sm:p-5 text-sm font-win98 space-y-5 min-w-0"
+              >
                 {activeTab === 'curriculum.md' && (
                   <FullCurriculumView t={t} isPt={isPt} />
                 )}
@@ -513,57 +387,8 @@ export function NotepadResume() {
               </div>
             </div>
           </Win98Window>
-        )}
       </div>
 
-      {/* Classic Win98 About Dialog */}
-      {aboutOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="win98-about-title"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-        >
-          <div className="max-w-sm w-full">
-            <Win98Window
-              title={isPt ? 'Sobre Marco Di Toro' : 'About Marco Di Toro'}
-              onClose={() => setAboutOpen(false)}
-            >
-              <div className="p-4 space-y-3 text-xs font-win98">
-                <div className="flex items-start gap-3">
-                  <div className="win98-inset p-0.5 shrink-0">
-                    <Image
-                      src="/profile_picture.jpg"
-                      alt={t('profilePictureAlt')}
-                      width={56}
-                      height={56}
-                      className="w-14 h-14 object-cover"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <p id="win98-about-title" className="font-bold text-sm">
-                      {t('title')}
-                    </p>
-                    <p>{t('subtitle2')}</p>
-                    <p className="text-[11px] opacity-80">
-                      Notepad++ [Win98 Edition] v1.98
-                    </p>
-                  </div>
-                </div>
-                <div className="border-t border-[var(--win-border-dark)] pt-2 flex justify-end">
-                  <button
-                    type="button"
-                    onClick={() => setAboutOpen(false)}
-                    className="win98-btn px-5 py-1 font-bold"
-                  >
-                    OK
-                  </button>
-                </div>
-              </div>
-            </Win98Window>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
@@ -784,7 +609,7 @@ function ProjectsList({ t, isPt }: { t: TFunc; isPt: boolean }) {
                     rel="noopener noreferrer"
                     className="win98-btn px-2 py-0.5 text-[11px] font-bold"
                   >
-                    {isPt ? 'Abrir Site ↗' : 'Live Demo ↗'}
+                    {isPt ? 'Site ↗' : 'Live Demo ↗'}
                   </a>
                 )}
               </div>
@@ -810,7 +635,7 @@ function SkillsList({ t }: { t: TFunc }) {
               return (
                 <span
                   key={text}
-                  className="win98-inset-gray px-2 py-0.5 text-xs font-npp"
+                  className="win98-inset-gray inline-flex items-center justify-center px-2 py-1 text-xs font-npp leading-none"
                 >
                   {text}
                 </span>
@@ -951,7 +776,7 @@ function SkillsTabView({ t }: { t: TFunc }) {
                 return (
                   <span
                     key={text}
-                    className="win98-inset-gray px-1.5 py-0.5 text-[#0000ff] dark:text-[#ce9178]"
+                    className="win98-inset-gray inline-flex items-center justify-center px-1.5 py-1 leading-none text-[#0000ff] dark:text-[#ce9178]"
                   >
                     &quot;{text}&quot;
                   </span>

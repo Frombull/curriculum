@@ -46,7 +46,7 @@ html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+  font-family: "Comic Sans MS", "Comic Sans", Tahoma, "MS Sans Serif", sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -54,7 +54,7 @@ body {
 }
 
 .font-win98 {
-  font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+  font-family: "Comic Sans MS", "Comic Sans", Tahoma, "MS Sans Serif", sans-serif;
 }
 
 .font-npp {
@@ -191,6 +191,20 @@ body {
 
 ::-webkit-scrollbar-corner {
   background: var(--win-bg);
+}
+
+@keyframes win98-shake {
+  0%, 100% { transform: translate(0, 0); }
+  15% { transform: translate(-6px, 2px); }
+  30% { transform: translate(6px, -2px); }
+  45% { transform: translate(-5px, -1px); }
+  60% { transform: translate(5px, 2px); }
+  75% { transform: translate(-3px, 1px); }
+  90% { transform: translate(3px, -1px); }
+}
+
+.animate-win98-shake {
+  animation: win98-shake 0.35s ease-in-out;
 }
 
 @media print {
