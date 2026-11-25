@@ -207,6 +207,12 @@ body {
   animation: win98-shake 0.35s ease-in-out;
 }
 
+/* Classic Win98 pixel-art hourglass wait cursor */
+.win98-wait,
+.win98-wait * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='24' viewBox='0 0 20 24' shape-rendering='crispEdges'%3E%3Crect x='3' y='1' width='14' height='2' fill='%23000'/%3E%3Crect x='4' y='2' width='12' height='1' fill='%23c0c0c0'/%3E%3Crect x='4' y='3' width='12' height='1' fill='%23000'/%3E%3Cpath d='M5 4h10v4l-4 4 4 4v4H5v-4l4-4-4-4z' fill='%23fff' stroke='%23000' stroke-width='1'/%3E%3Crect x='6' y='5' width='8' height='2' fill='%23c0c080'/%3E%3Crect x='8' y='7' width='4' height='2' fill='%23c0c080'/%3E%3Crect x='9' y='11' width='2' height='3' fill='%23c0c080'/%3E%3Crect x='7' y='17' width='6' height='2' fill='%23c0c080'/%3E%3Crect x='6' y='18' width='8' height='1' fill='%23808000'/%3E%3Crect x='3' y='20' width='14' height='1' fill='%23000'/%3E%3Crect x='4' y='21' width='12' height='1' fill='%23c0c0c0'/%3E%3Crect x='3' y='22' width='14' height='1' fill='%23000'/%3E%3C/svg%3E") 10 12, wait !important;
+}
+
 @media print {
   body {
     background: #ffffff !important;

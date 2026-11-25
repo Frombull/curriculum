@@ -148,7 +148,32 @@ export function NotepadResume() {
     return () => document.removeEventListener('mousedown', handleOutside);
   }, [openMenu]);
 
+  const waitTimerRef = useRef<number | null>(null);
+
+  const triggerWaitCursor = (durationMs = 450) => {
+    const root = document.documentElement;
+    root.classList.add('win98-wait');
+    if (waitTimerRef.current) {
+      window.clearTimeout(waitTimerRef.current);
+    }
+    waitTimerRef.current = window.setTimeout(() => {
+      root.classList.remove('win98-wait');
+      waitTimerRef.current = null;
+    }, durationMs);
+  };
+
+  useEffect(() => {
+    triggerWaitCursor(1000);
+    return () => {
+      if (waitTimerRef.current) {
+        window.clearTimeout(waitTimerRef.current);
+      }
+      document.documentElement.classList.remove('win98-wait');
+    };
+  }, []);
+
   const handleCopyEmail = async () => {
+    triggerWaitCursor(250);
     try {
       await navigator.clipboard.writeText('marcorrditoro@gmail.com');
       setStatusNote(isPt ? 'Email copiado!' : 'Email copied to clipboard!');
@@ -162,7 +187,20 @@ export function NotepadResume() {
   const handleSwitchLocale = (nextLocale: string) => {
     setOpenMenu(null);
     if (nextLocale !== locale) {
+      triggerWaitCursor(650);
       router.replace(pathname, { locale: nextLocale, scroll: false });
+    }
+  };
+
+  const handleToggleTheme = (nextDark: boolean) => {
+    triggerWaitCursor(320);
+    toggleThemeDom(nextDark);
+  };
+
+  const handleSelectTab = (id: TabId) => {
+    if (id !== activeTab) {
+      triggerWaitCursor(180);
+      setActiveTab(id);
     }
   };
 
@@ -195,7 +233,7 @@ export function NotepadResume() {
         locale={locale}
         isDark={isDark}
         onSwitchLocale={handleSwitchLocale}
-        onToggleTheme={toggleThemeDom}
+        onToggleTheme={handleToggleTheme}
       />
 
       {/* Main Notepad++ / Win98 Window */}
@@ -309,7 +347,7 @@ export function NotepadResume() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => toggleThemeDom(!isDark)}
+                  onClick={() => handleToggleTheme(!isDark)}
                   className="win98-btn px-2 py-0.5"
                   aria-label="Toggle theme"
                 >
@@ -332,7 +370,7 @@ export function NotepadResume() {
                     type="button"
                     role="tab"
                     aria-selected={isActive}
-                    onClick={() => setActiveTab(id)}
+                    onClick={() => handleSelectTab(id)}
                     className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-win98 whitespace-nowrap ${
                       isActive ? 'npp-tab-active' : 'npp-tab'
                     }`}
