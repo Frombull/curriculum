@@ -22,7 +22,7 @@ export function LanguageSwitcher() {
     <div
       role="group"
       aria-label="Language"
-      className="flex flex-row md:flex-col items-center gap-0.5 p-0.5 rounded-[2px] bg-slate-100/80 dark:bg-zinc-900/80"
+      className="flex flex-row md:flex-col items-center gap-1 p-0.5 rounded-[2px] bg-slate-100/80 dark:bg-zinc-900/80"
     >
       {LOCALES.map(({ code, label }) => {
         const active = code === locale;
@@ -34,7 +34,7 @@ export function LanguageSwitcher() {
             aria-label={label}
             aria-pressed={active}
             title={label}
-            className={`w-7 h-7 flex items-center justify-center rounded-[1px] font-mono text-[11px] font-medium uppercase tracking-wider transition-colors cursor-pointer ${
+            className={`w-9 h-9 flex items-center justify-center rounded-[2px] font-mono text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer ${
               active
                 ? 'bg-indigo-600 text-white shadow-xs'
                 : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100'

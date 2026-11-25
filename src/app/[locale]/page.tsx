@@ -286,13 +286,25 @@ export default function Home() {
               icon={<User className="text-indigo-600 dark:text-indigo-400" />}
               id="languages"
             >
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <Image src="/flags/flag_br.svg" alt="Brazil" width={18} height={18} className="rounded-sm" />
+              <div className="space-y-5">
+                <div className="flex items-center gap-3">
+                  <Image
+                    src="/flags/flag_br.svg"
+                    alt="Brazil"
+                    width={32}
+                    height={32}
+                    className="w-8 h-auto rounded-sm shrink-0"
+                  />
                   <p className="text-sm text-slate-700 dark:text-zinc-300">{t('languagesSection.pt')}</p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Image src="/flags/flag_us.svg" alt="United States" width={18} height={18} className="rounded-sm" />
+                <div className="flex items-center gap-3">
+                  <Image
+                    src="/flags/flag_us.svg"
+                    alt="United States"
+                    width={32}
+                    height={32}
+                    className="w-8 h-auto rounded-sm shrink-0"
+                  />
                   <p className="text-sm text-slate-700 dark:text-zinc-300">{t('languagesSection.en')}</p>
                 </div>
               </div>
