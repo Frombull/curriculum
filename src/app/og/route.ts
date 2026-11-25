@@ -1,7 +1,7 @@
 import React from "react";
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 

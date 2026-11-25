@@ -46,7 +46,7 @@
     "experience3": {
       "role": "Freelance Full-Stack Developer",
       "company": "Self-Employed | Remote",
-      "duration": "02/2023 - Current",
+      "duration": "02/2023 - 07/2026",
       "description": "Built end-to-end web applications with focus on scalable architecture and UX. Managed the full SDLC using Agile/Scrum practices. Worked with Next.js, TypeScript, Prisma, PostgreSQL and Docker; testing with Cypress (E2E) and Postman; CI/CD with GitHub Actions; domain configuration and hosting."
     },
     "project1": {
@@ -217,16 +217,5 @@
       "title": "Contact Us",
       "p1": "If you have any questions about the use of cookies on this website, you can contact me through the information available in the contact section."
     }
-  },
-  "Blog": {
-    "postsRecentes": "Recent Posts",
-    "empty": "No posts available right now.",
-    "sidebarSoon": "Coming soon."
-  },
-  "blogPostCard": {
-    "readMore": "Read more"
-  },
-  "BlogPost": {
-    "backToBlog": "← Back to blog"
   }
 }

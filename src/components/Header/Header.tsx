@@ -2,30 +2,16 @@
 
 import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher/LanguageSwitcher";
+import { ThemeToggle } from "@/components/ThemeToggle/ThemeToggle";
 import { useTranslations } from 'next-intl';
-import { Moon, Sun, Menu, X } from 'lucide-react';
-import { useState, useEffect, useMemo, useRef, useSyncExternalStore } from 'react';
+import { Menu, X } from 'lucide-react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { DM_Mono } from 'next/font/google';
 
 const dmMono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
 
-function subscribeTheme(callback: () => void) {
-    const observer = new MutationObserver(callback);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-    return () => observer.disconnect();
-}
-
-function getThemeSnapshot() {
-    return document.documentElement.classList.contains('dark');
-}
-
-function getServerThemeSnapshot() {
-    return false;
-}
-
 export function Header() {
     const t = useTranslations('Header');
-    const darkMode = useSyncExternalStore(subscribeTheme, getThemeSnapshot, getServerThemeSnapshot);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const headerRef = useRef<HTMLElement>(null);
 
@@ -75,18 +61,6 @@ export function Header() {
         loadAnime();
     }, [mobileMenuOpen]);
 
-
-    const toggleDarkMode = () => {
-        const newDarkMode = !darkMode;
-        if (newDarkMode) {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        }
-    };
-
     return (
         <header
             ref={headerRef}
@@ -122,13 +96,7 @@ export function Header() {
                 {/* Controls */}
                 <div className="flex items-center gap-3">
                     <div className="header-item" style={{ opacity: 0 }}>
-                        <button
-                            onClick={toggleDarkMode}
-                            className="p-2 rounded-[2px] text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors hover:cursor-pointer [&>svg]:fill-none"
-                            aria-label="Toggle dark mode"
-                        >
-                            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-                        </button>
+                        <ThemeToggle start="top-right" />
                     </div>
 
                     <div className="header-item" style={{ opacity: 0 }}>
