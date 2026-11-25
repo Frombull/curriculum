@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect, useRef, type ReactNode } from 'react';
 import { GithubIcon } from '@/components/icons/BrandIcons';
 import type { SkillCategory } from '@/data/resume';
+import { hasResumeAnimated } from '@/lib/animationState';
 
 export function IconText({
   icon,
@@ -40,7 +41,7 @@ export function SectionCard({
     <div
       id={id}
       className={`animate-card bg-white dark:bg-zinc-900 mb-4 rounded-[2px] border border-slate-200/70 dark:border-zinc-800 shadow-sm overflow-hidden hover:shadow-md transition-[border-color,box-shadow] duration-75 ${className}`}
-      style={{ opacity: 0 }}
+      style={hasResumeAnimated() ? undefined : { opacity: 0 }}
     >
       <div className="p-6">
         <div className="flex items-center gap-3 mb-6">
@@ -216,7 +217,7 @@ export function SkillBadge({
   return (
     <span
       className={`skill-badge text-sm font-medium px-2.5 py-1 rounded ${colorClass} cursor-default transition-all duration-200 hover:scale-105 hover:shadow-sm inline-block`}
-      style={{ opacity: 0 }}
+      style={hasResumeAnimated() ? undefined : { opacity: 0 }}
     >
       {children}
     </span>
@@ -225,8 +226,11 @@ export function SkillBadge({
 
 export function AnimatedName({ text }: { text: string }) {
   const ref = useRef<HTMLHeadingElement>(null);
+  const skipAnimation = hasResumeAnimated();
 
   useEffect(() => {
+    if (skipAnimation) return;
+
     const loadAnime = async () => {
       const { animate, stagger } = await import('animejs');
       if (!ref.current) return;
@@ -240,12 +244,16 @@ export function AnimatedName({ text }: { text: string }) {
       });
     };
     loadAnime();
-  }, []);
+  }, [skipAnimation]);
 
   return (
     <h1 ref={ref} className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-zinc-50 mb-2">
       {text.split('').map((char, i) => (
-        <span key={i} className="char inline-block" style={{ opacity: 0 }}>
+        <span
+          key={i}
+          className="char inline-block"
+          style={skipAnimation ? undefined : { opacity: 0 }}
+        >
           {char === ' ' ? '\u00A0' : char}
         </span>
       ))}
@@ -255,7 +263,10 @@ export function AnimatedName({ text }: { text: string }) {
 
 export function Avatar({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="animate-header relative w-42 h-42 mx-auto mb-4" style={{ opacity: 0 }}>
+    <div
+      className="animate-header relative w-42 h-42 mx-auto mb-4"
+      style={hasResumeAnimated() ? undefined : { opacity: 0 }}
+    >
       <div className="absolute inset-0 rounded-[2px] animate-pulse-ring border-2 border-indigo-400/40 dark:border-indigo-500/30 scale-105" />
       <div className="w-full h-full rounded-[2px] ring-1 ring-slate-200 dark:ring-zinc-800 shadow-sm overflow-hidden">
         <Image

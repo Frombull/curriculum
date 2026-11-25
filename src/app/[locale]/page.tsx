@@ -32,11 +32,15 @@ import {
   PROJECTS,
   SKILL_GROUPS,
 } from '@/data/resume';
+import { hasResumeAnimated, markResumeAnimated } from '@/lib/animationState';
 
-function useScrollReveal() {
+function useScrollReveal(skipAnimation: boolean) {
   useEffect(() => {
+    if (skipAnimation) return;
+
     const loadAnime = async () => {
       const { animate, stagger } = await import('animejs');
+      markResumeAnimated();
 
       animate('.animate-header', {
         opacity: [0, 1],
@@ -86,12 +90,13 @@ function useScrollReveal() {
     };
 
     loadAnime();
-  }, []);
+  }, [skipAnimation]);
 }
 
 export default function Home() {
   const t = useTranslations('HomePage');
-  useScrollReveal();
+  const skipAnimation = hasResumeAnimated();
+  useScrollReveal(skipAnimation);
 
   return (
     <div className="relative bg-slate-50 dark:bg-zinc-950 min-h-screen font-sans pt-10 md:pt-14 pb-20 md:pb-8">
@@ -108,18 +113,30 @@ export default function Home() {
         <header className="text-center mb-12">
           <Avatar src="/profile_picture.jpg" alt={t('profilePictureAlt')} />
 
-          <div className="animate-header" style={{ opacity: 0 }}>
+          <div
+            className="animate-header"
+            style={skipAnimation ? undefined : { opacity: 0 }}
+          >
             <AnimatedName text={t('title')} />
           </div>
 
-          <p className="animate-header text-lg text-slate-700 dark:text-zinc-300 mt-2 font-medium" style={{ opacity: 0 }}>
+          <p
+            className="animate-header text-lg text-slate-700 dark:text-zinc-300 mt-2 font-medium"
+            style={skipAnimation ? undefined : { opacity: 0 }}
+          >
             {t('subtitle')}
           </p>
-          <p className="animate-header text-sm text-slate-600 dark:text-zinc-400 mt-2 mb-6" style={{ opacity: 0 }}>
+          <p
+            className="animate-header text-sm text-slate-600 dark:text-zinc-400 mt-2 mb-6"
+            style={skipAnimation ? undefined : { opacity: 0 }}
+          >
             {t('subtitle2')}
           </p>
 
-          <div className="animate-header mt-6 flex justify-center items-center flex-wrap gap-x-6 gap-y-2 mb-8" style={{ opacity: 0 }}>
+          <div
+            className="animate-header mt-6 flex justify-center items-center flex-wrap gap-x-6 gap-y-2 mb-8"
+            style={skipAnimation ? undefined : { opacity: 0 }}
+          >
             <IconText icon={<Mail size={16} />}>marcorrditoro@gmail.com</IconText>
             <a href="https://github.com/Frombull" target="_blank" rel="noopener noreferrer">
               <IconText

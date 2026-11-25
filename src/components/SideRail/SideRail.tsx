@@ -3,12 +3,16 @@
 import { useEffect, useRef } from 'react';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle/ThemeToggle';
+import { hasSideRailAnimated, markSideRailAnimated } from '@/lib/animationState';
 
 export function SideRail() {
   const railRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const skipAnimation = hasSideRailAnimated();
 
   useEffect(() => {
+    if (skipAnimation) return;
+
     let cancelled = false;
     let timerId: number | undefined;
 
@@ -21,6 +25,7 @@ export function SideRail() {
       if (reducedMotion) {
         rail.style.opacity = '1';
         content.style.opacity = '1';
+        markSideRailAnimated();
         return;
       }
 
@@ -31,6 +36,8 @@ export function SideRail() {
 
       const { createTimeline } = await import('animejs');
       if (cancelled) return;
+
+      markSideRailAnimated();
 
       const isDesktop = window.matchMedia('(min-width: 768px)').matches;
       const tl = createTimeline({
@@ -95,7 +102,7 @@ export function SideRail() {
       cancelled = true;
       if (timerId !== undefined) window.clearTimeout(timerId);
     };
-  }, []);
+  }, [skipAnimation]);
 
   return (
     <aside
@@ -104,12 +111,12 @@ export function SideRail() {
     >
       <div
         ref={railRef}
-        style={{ opacity: 0 }}
+        style={skipAnimation ? undefined : { opacity: 0 }}
         className="overflow-hidden rounded-[2px] border border-slate-300/80 dark:border-zinc-700/80 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md shadow-md"
       >
         <div
           ref={contentRef}
-          style={{ opacity: 0 }}
+          style={skipAnimation ? undefined : { opacity: 0 }}
           className="flex flex-row md:flex-col items-center gap-2 p-1.5"
         >
           <ThemeToggle start="bottom-left" />
